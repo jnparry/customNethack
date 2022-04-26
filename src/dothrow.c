@@ -1302,6 +1302,12 @@ boolean twoweap; /* used to restore twoweapon mode if wielded weapon returns */
             thrownobj = (struct obj *) 0;
     }
 
+	if (weapon_type(uwep) == P_FIREARM && thrownobj) {
+        /* ammo fired from a firearm should always break *JNP */
+        delobj(obj);
+        thrownobj = (struct obj *) 0;
+	}
+
     if (!thrownobj) {
         /* missile has already been handled */
         if (tethered_weapon)

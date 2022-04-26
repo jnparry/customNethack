@@ -6,11 +6,11 @@
 #include "hack.h"
 
 struct trobj {
-    short trotyp;
-    schar trspe;
-    char trclass;
-    Bitfield(trquan, 6);
-    Bitfield(trbless, 2);
+    short trotyp;         // object
+    schar trspe;          // enchantment
+    char trclass;         // type of object
+    Bitfield(trquan, 6);  // quantity
+    Bitfield(trbless, 2); // BUC - blessed uncursed cursed
 };
 
 STATIC_DCL void FDECL(ini_inv, (struct trobj *));
@@ -97,6 +97,37 @@ static struct trobj Monk[] = {
     { FORTUNE_COOKIE, 0, FOOD_CLASS, 3, UNDEF_BLESS },
     { 0, 0, 0, 0, 0 }
 };
+/*static struct trobj Necromancer[] = {
+#define W_MULTSTART 2
+#define W_MULTEND 6
+    { QUARTERSTAFF, 1, WEAPON_CLASS, 1, 1 },
+    { UNDEF_TYP, UNDEF_SPE, RING_CLASS, 2, UNDEF_BLESS },
+    { UNDEF_TYP, UNDEF_SPE, POTION_CLASS, 3, UNDEF_BLESS },
+    { UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 3, UNDEF_BLESS },
+    { SPE_SUMMON_UNDEAD, 0, SPBOOK_CLASS, 1, 1 },
+    { SPE_COMMAND_UNDEAD, 0, SPBOOK_CLASS, 1, 1 },
+    { SPE_DRAIN_LIFE, 0, SPBOOK_CLASS, 1, 1 },
+    { UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ WAN_DRAIN, 0, WAND_CLASS, 1, 0}
+	{ PICK_AXE, 0, TOOL_CLASS, 0}
+    { 0, 0, 0, 0, 0 }
+};*/ 
+static struct trobj Pirate[] = {
+#define P_BULLETS 3
+	{ SCIMITAR, 0, WEAPON_CLASS, 1, 0 },
+	{ KNIFE, 1, WEAPON_CLASS, 2, 0 },
+    { PISTOL, 0, WEAPON_CLASS, 1, 0 },
+    { BULLET, 0, WEAPON_CLASS, 20, 0 }, 
+	{ FEDORA, 0, ARMOR_CLASS, 1, 0 },
+	{ LEATHER_JACKET, 0, ARMOR_CLASS, 1, 0 },
+	{ HIGH_BOOTS, 0, ARMOR_CLASS, 1, 0 },
+	{ CRAM_RATION, 0, FOOD_CLASS, 2, 0 },
+	{ ORANGE, 0, FOOD_CLASS, 3, 0 },
+	{ POT_BOOZE, 0, POTION_CLASS, 3, 0 },
+    { UNDEF_TYP, UNDEF_SPE, RING_CLASS, 1, UNDEF_BLESS },
+	{ OILSKIN_SACK, 0, TOOL_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
 static struct trobj Priest[] = {
     { MACE, 1, WEAPON_CLASS, 1, 1 },
     { ROBE, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
@@ -138,6 +169,15 @@ static struct trobj Samurai[] = {
     { SPLINT_MAIL, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
     { 0, 0, 0, 0, 0 }
 };
+/*static struct trobj Shinobi[] = {
+#define S_ARROWS 3
+    { KATANA, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
+    { SHORT_SWORD, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
+    { YUMI, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
+    { YA, 0, WEAPON_CLASS, 25, UNDEF_BLESS },
+    { SPLINT_MAIL, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
+    { 0, 0, 0, 0, 0 }
+};*/
 static struct trobj Tourist[] = {
 #define T_DARTS 0
     { DART, 2, WEAPON_CLASS, 25, UNDEF_BLESS }, /* quan is variable */
@@ -369,6 +409,50 @@ static const struct def_skill Skill_Mon[] = {
     { P_MARTIAL_ARTS, P_GRAND_MASTER },
     { P_NONE, 0 }
 };
+/*static const struct def_skill Skill_N[] = {
+    { P_DAGGER, P_EXPERT },
+	{ P_KNIFE, P_SKILLED},
+    { P_AXE, P_SKILLED },
+    { P_CLUB, P_SKILLED },
+    { P_MACE, P_BASIC },
+    { P_QUARTERSTAFF, P_EXPERT },
+    { P_POLEARMS, P_SKILLED },
+    { P_SPEAR, P_BASIC },
+    { P_TRIDENT, P_BASIC },
+	{ P_PICK_AXE, P_SKILLED },
+    { P_SLING, P_SKILLED },
+    { P_DART, P_EXPERT },
+    { P_SHURIKEN, P_BASIC },
+    { P_ATTACK_SPELL, P_EXPERT },
+    { P_MATTER_SPELL, P_EXPERT },
+    { P_BARE_HANDED_COMBAT, P_BASIC },
+    { P_NONE, 0 }
+};*/
+static const struct def_skill Skill_Pir[] = {
+    { P_DAGGER, P_SKILLED },
+    { P_KNIFE, P_EXPERT },
+    { P_AXE, P_SKILLED },
+    { P_SHORT_SWORD, P_BASIC },
+    { P_BROAD_SWORD, P_EXPERT },
+    { P_LONG_SWORD, P_BASIC },
+    { P_SCIMITAR, P_EXPERT },
+    { P_SABER, P_EXPERT },
+    { P_MORNING_STAR, P_SKILLED },
+    { P_FLAIL, P_EXPERT },
+    { P_SPEAR, P_SKILLED },
+    { P_TRIDENT, P_EXPERT },
+    { P_FIREARM, P_EXPERT },
+    { P_CROSSBOW, P_EXPERT },
+    { P_DART, P_SKILLED },
+    { P_WHIP, P_SKILLED },
+    { P_UNICORN_HORN, P_BASIC },
+    { P_DIVINATION_SPELL, P_BASIC },
+    { P_ENCHANTMENT_SPELL, P_BASIC },
+    { P_ESCAPE_SPELL, P_SKILLED },
+    { P_TWO_WEAPON_COMBAT, P_SKILLED },
+    { P_BARE_HANDED_COMBAT, P_EXPERT },
+    { P_NONE, 0 }
+};
 static const struct def_skill Skill_P[] = {
     { P_CLUB, P_EXPERT },
     { P_MACE, P_EXPERT },
@@ -471,6 +555,30 @@ static const struct def_skill Skill_S[] = {
     { P_MARTIAL_ARTS, P_MASTER },
     { P_NONE, 0 }
 };
+/*static const struct def_skill Skill_Sh[] = {
+    { P_DAGGER, P_BASIC },
+    { P_KNIFE, P_SKILLED },
+    { P_SHORT_SWORD, P_EXPERT },
+    { P_BROAD_SWORD, P_SKILLED },
+    { P_LONG_SWORD, P_EXPERT },
+    { P_TWO_HANDED_SWORD, P_EXPERT },
+    { P_SCIMITAR, P_BASIC },
+    { P_SABER, P_BASIC },
+    { P_FLAIL, P_SKILLED },
+    { P_QUARTERSTAFF, P_BASIC },
+    { P_POLEARMS, P_SKILLED },
+    { P_SPEAR, P_SKILLED },
+    { P_LANCE, P_SKILLED },
+    { P_BOW, P_EXPERT },
+    { P_SHURIKEN, P_EXPERT },
+    { P_ATTACK_SPELL, P_BASIC },
+    { P_DIVINATION_SPELL, P_BASIC },
+    { P_CLERIC_SPELL, P_SKILLED },
+    { P_RIDING, P_SKILLED },
+    { P_TWO_WEAPON_COMBAT, P_EXPERT },
+    { P_MARTIAL_ARTS, P_MASTER },
+    { P_NONE, 0 }
+};*/
 static const struct def_skill Skill_T[] = {
     { P_DAGGER, P_EXPERT },
     { P_KNIFE, P_SKILLED },
@@ -724,6 +832,13 @@ u_init()
         skill_init(Skill_Mon);
         break;
     }
+    case PM_PIRATE:
+        Pirate[P_BULLETS].trquan = rn1(10, 20);
+        ini_inv(Pirate);
+        if (!rn2(10))
+            ini_inv(Lamp);
+        skill_init(Skill_Pir);
+        break;
     case PM_PRIEST:
         ini_inv(Priest);
         if (!rn2(10))
@@ -933,6 +1048,9 @@ int otyp;
     case PM_MONK:
         skills = Skill_Mon;
         break;
+    case PM_PIRATE:
+        skills = Skill_Pir;
+        break;
     case PM_PRIEST:
         skills = Skill_P;
         break;
@@ -1051,7 +1169,7 @@ register struct trobj *trop;
                 nocreate4 = otyp;
         }
 
-        if (urace.malenum != PM_HUMAN) {
+        if (urace.malenum != PM_HUMAN && !Role_if(PM_PIRATE)) {
             /* substitute race-specific items; this used to be in
                the 'if (otyp != UNDEF_TYP) { }' block above, but then
                substitutions didn't occur for randomly generated items

@@ -111,25 +111,29 @@ OBJECT(OBJ("strange object", None),
 
 /* missiles; materiel reflects the arrowhead, not the shaft */
 PROJECTILE("arrow", None,
-           1, 55, 1, 2, 6, 6, 0,        IRON, -P_BOW, HI_METAL),
+           1, 50, 1, 2, 6, 6, 0,        IRON,   -P_BOW,      HI_METAL),  // prob: -5 *JNP
 PROJECTILE("elven arrow", "runed arrow",
-           0, 20, 1, 2, 7, 6, 0,        WOOD, -P_BOW, HI_WOOD),
+           0, 20, 1, 2, 7, 6, 0,        WOOD,   -P_BOW,      HI_WOOD),
 PROJECTILE("orcish arrow", "crude arrow",
-           0, 20, 1, 2, 5, 6, 0,        IRON, -P_BOW, CLR_BLACK),
+           0, 15, 1, 2, 5, 6, 0,        IRON,   -P_BOW,      CLR_BLACK), // prob: -5 *JNP
 PROJECTILE("silver arrow", None,
-           1, 12, 1, 5, 6, 6, 0,        SILVER, -P_BOW, HI_SILVER),
+           1, 12, 1, 5, 6, 6, 0,        SILVER, -P_BOW,      HI_SILVER),
 PROJECTILE("ya", "bamboo arrow",
-           0, 15, 1, 4, 7, 7, 1,        METAL, -P_BOW, HI_METAL),
+           0, 15, 1, 4, 7, 7, 1,        METAL,  -P_BOW,      HI_METAL),
+PROJECTILE("bullet", None, 
+		   1, 15, 1, 5, 20, 30, 0,  IRON,   -P_FIREARM,  HI_METAL),
+PROJECTILE("silver bullet", None, 
+		   1, 12, 1, 15, 20, 30, 0, SILVER, -P_FIREARM,  HI_SILVER),
 PROJECTILE("crossbow bolt", None,
-           1, 55, 1, 2, 4, 6, 0,        IRON, -P_CROSSBOW, HI_METAL),
+           1, 55, 1, 2, 4, 6, 0,        IRON,   -P_CROSSBOW, HI_METAL),
 
 /* missiles that don't use a launcher */
 WEAPON("dart", None,
-       1, 1, 0, 60,   1,   2,  3,  2, 0, P,   -P_DART, IRON, HI_METAL),
+       1, 1, 0, 50,   1,   2,  3,  2, 0, P,   -P_DART,     IRON,  HI_METAL), // prob: -10 *JNP
 WEAPON("shuriken", "throwing star",
-       0, 1, 0, 35,   1,   5,  8,  6, 2, P,   -P_SHURIKEN, IRON, HI_METAL),
+       0, 1, 0, 30,   1,   5,  8,  6, 2, P,   -P_SHURIKEN, IRON,  HI_METAL), // prob: -5 *JNP
 WEAPON("boomerang", None,
-       1, 1, 0, 15,   5,  20,  9,  9, 0, 0,   -P_BOOMERANG, WOOD, HI_WOOD),
+       1, 1, 0, 13,   5,  20,  9,  9, 0, 0,   -P_BOOMERANG, WOOD, HI_WOOD),  // prob: -2 *JNP
 
 /* spears [note: javelin used to have a separate skill from spears,
    because the latter are primarily stabbing weapons rather than
@@ -292,12 +296,13 @@ WEAPON("bullwhip", None,
        1, 0, 0,  2,  20,   4,  2,  1, 0, 0,   P_WHIP, LEATHER, CLR_BROWN),
 
 /* bows */
-BOW("bow", None,               1, 24, 30, 60, 0, WOOD, P_BOW, HI_WOOD),
-BOW("elven bow", "runed bow",  0, 12, 30, 60, 0, WOOD, P_BOW, HI_WOOD),
-BOW("orcish bow", "crude bow", 0, 12, 30, 60, 0, WOOD, P_BOW, CLR_BLACK),
-BOW("yumi", "long bow",        0,  0, 30, 60, 0, WOOD, P_BOW, HI_WOOD),
-BOW("sling", None,             1, 40,  3, 20, 0, LEATHER, P_SLING, HI_LEATHER),
-BOW("crossbow", None,          1, 45, 50, 40, 0, WOOD, P_CROSSBOW, HI_WOOD),
+BOW("bow", None,               1, 24, 30, 60,  0, WOOD,    P_BOW,      HI_WOOD),
+BOW("elven bow", "runed bow",  0, 12, 30, 60,  0, WOOD,    P_BOW,      HI_WOOD),
+BOW("orcish bow", "crude bow", 0, 12, 30, 60,  0, WOOD,    P_BOW,      CLR_BLACK),
+BOW("yumi", "long bow",        0,  0, 30, 60,  0, WOOD,    P_BOW,      HI_WOOD),
+BOW("sling", None,             1, 33,  3, 20,  0, LEATHER, P_SLING,    HI_LEATHER), // prob: -7 *JNP
+BOW("pistol", None,            1, 12, 20, 100, 0, METAL,   P_FIREARM,  HI_METAL), 
+BOW("crossbow", None,          1, 40, 50, 40,  0, WOOD,    P_CROSSBOW, HI_WOOD),    // prob: -5 *JNP
 
 #undef P
 #undef S

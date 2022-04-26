@@ -193,8 +193,10 @@ register struct monst *mtmp;
                 if (!rn2(3)) {
                     w1 = rn1(BEC_DE_CORBIN - PARTISAN + 1, PARTISAN);
                     w2 = rn2(2) ? DAGGER : KNIFE;
-                } else
+                } else {
                     w1 = rn2(2) ? SPEAR : SHORT_SWORD;
+                    m_initthrow(mtmp, BULLET, 6);
+				}
                 break;
             case PM_SERGEANT:
                 w1 = rn2(2) ? FLAIL : MACE;

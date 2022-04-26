@@ -1088,7 +1088,8 @@ onDrawItem(HWND hWnd, WPARAM wParam, LPARAM lParam)
 
             y = (lpdis->rcItem.bottom + lpdis->rcItem.top - tileYScaled) / 2;
 
-            if (GetNHApp()->bmpMapTiles == GetNHApp()->bmpTiles) {
+			boolean customBMP = TRUE; // we are using our own custom bmp, and we want it to utilize this transparancy code *JNP 4/22
+            if (GetNHApp()->bmpMapTiles == GetNHApp()->bmpTiles || customBMP) {
                 /* using original nethack tiles - apply image transparently */
                 (*GetNHApp()->lpfnTransparentBlt)(lpdis->hDC, x, y, 
                                           tileXScaled, tileYScaled,

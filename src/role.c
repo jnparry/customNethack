@@ -275,6 +275,47 @@ const struct Role roles[] = {
       A_WIS,
       SPE_RESTORE_ABILITY,
       -4 },
+    { { "Pirate", 0 },
+      { { "Landlubber", 0 },
+		{ "Swabbie", 0 },
+		{ "Cutthroat", 0 },
+		{ "Bosun", 0 },
+		{ "Second Mate", 0 },
+		{ "First Mate", 0 },
+		{ "Captain", 0 },
+		{ "Pirate Lord", 0 },
+		{ "Dread Pirate", 0 } },
+      "The Lord", "The Deep Blue Sea", "The Devil",
+      "Pir",
+      "Tortuga",
+      "Shipwreck Island",
+      PM_PIRATE,
+	  NON_PM,
+	  NON_PM,
+      PM_NORN,         // TODO: ADD QUEST LEADER
+      PM_WARRIOR,      // TODO: ADD QUEST NPCs
+      PM_LORD_SURTUR,  // TODO: ADD QUEST NEMESIS
+	  PM_SOLDIER,
+	  PM_SKELETON,
+	  S_RODENT,
+	  S_ELEMENTAL,
+      ART_ORB_OF_FATE, // TODO: ADD QUEST ARTIFACT
+      MH_HUMAN | MH_ELF | MH_ORC | ROLE_MALE | ROLE_FEMALE | ROLE_NEUTRAL | ROLE_CHAOTIC, 
+	  /* Str Int Wis Dex Con Cha */
+	  { 7, 10, 10, 7, 7, 7 },
+      { 20, 20, 20, 15, 20, 10 },
+      /* Init   Lower  Higher */
+      { 11, 0, 0, 8, 1, 0 }, /* Hit points */
+      { 1, 0, 0, 1, 0, 1 },
+      14, /* Energy */
+      10,
+      5,
+      0,
+      2,
+      10,
+      A_INT,
+      SPE_CAUSE_FEAR,
+      -4 },
     { { "Priest", "Priestess" },
       { { "Aspirant", 0 },
         { "Acolyte", 0 },
@@ -2143,6 +2184,8 @@ struct monst *mtmp;
     switch (Role_switch) {
     case PM_KNIGHT:
         return "Salutations"; /* Olde English */
+    case PM_PIRATE:
+        return "Ahoy Matey"; /* Pirate Speak */
     case PM_SAMURAI:
         return (mtmp && mtmp->data == &mons[PM_SHOPKEEPER])
                     ? "Irasshaimase"
@@ -2166,6 +2209,8 @@ Goodbye()
     switch (Role_switch) {
     case PM_KNIGHT:
         return "Fare thee well"; /* Olde English */
+    case PM_PIRATE:
+        return "Avast Ye"; /* Pirate Speak */
     case PM_SAMURAI:
         return "Sayonara"; /* Japanese */
     case PM_TOURIST:

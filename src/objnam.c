@@ -59,7 +59,21 @@ STATIC_OVL struct Jitem Japanese_items[] = { { SHORT_SWORD, "wakizashi" },
                                              { POT_BOOZE, "sake" },
                                              { 0, "" } };
 
+STATIC_OVL struct Jitem Pirate_items[] = { { SCIMITAR, "cutlass" },      
+										   { CRAM_RATION, "sea biscuit" },
+										   { SMALL_SHIELD, "buckler" },  
+										   { SACK, "ditty bag" },
+									   	   { LARGE_BOX, "foot locker" }, 
+									   	   { CLUB, "belaying pin" },
+									   	   { GOLD_PIECE, "doubloom" },   
+									   	   { POT_BOOZE, "potion of rum" },
+										   { PISTOL, "flintlock" }, 
+										   { FEDORA, "pirate hat" },
+                                           { 0, "" } };
+
 STATIC_DCL const char *FDECL(Japanese_item_name, (int i));
+
+STATIC_DCL const char *FDECL(Pirate_item_name, (int i));
 
 STATIC_OVL char *
 strprepend(s, pref)
@@ -116,6 +130,8 @@ register int otyp;
 
     if (Role_if(PM_SAMURAI) && Japanese_item_name(otyp))
         actualn = Japanese_item_name(otyp);
+    if (Role_if(PM_PIRATE) && Pirate_item_name(otyp))
+        actualn = Pirate_item_name(otyp);
     switch (ocl->oc_class) {
     case COIN_CLASS:
         Strcpy(buf, "coin");
@@ -435,6 +451,8 @@ unsigned cxn_flags; /* bitmask of CXN_xxx values */
     buf = nextobuf() + PREFIX; /* leave room for "17 -3 " */
     if (Role_if(PM_SAMURAI) && Japanese_item_name(typ))
         actualn = Japanese_item_name(typ);
+    if (Role_if(PM_PIRATE) && Pirate_item_name(typ))
+		actualn = Pirate_item_name(typ);
     /* As of 3.6.2: this used to be part of 'dn's initialization, but it
        needs to come after possibly overriding 'actualn' */
     if (!dn)
@@ -1218,7 +1236,11 @@ unsigned doname_flags;
                     /* Ammo for a bow */
                     Strcat(bp, " (in quiver)");
                     break;
-                } else {
+                } else if (objects[obj->otyp].oc_skill == -P_FIREARM){
+                    // Ammo for gun
+                    Strcat(bp, " (in ammo box)");
+                    break;
+				} else {
                     /* Ammo not for a bow */
                     Strcat(bp, " (in quiver pouch)");
                     break;
@@ -4140,6 +4162,20 @@ Japanese_item_name(i)
 int i;
 {
     struct Jitem *j = Japanese_items;
+
+    while (j->item) {
+        if (i == j->item)
+            return j->name;
+        j++;
+    }
+    return (const char *) 0;
+}
+
+STATIC_OVL const char *
+Pirate_item_name(i) 
+int i;
+{
+    struct Jitem *j = Pirate_items;
 
     while (j->item) {
         if (i == j->item)
