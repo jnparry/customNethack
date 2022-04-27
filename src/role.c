@@ -109,6 +109,50 @@ const struct Role roles[] = {
       A_INT,
       SPE_HASTE_SELF,
       -4 },
+ /*   { { "Beast tamer", 0 },				//Needs to be finised
+      { { "Friend of the beasts", 0 },
+        { "Beast companion", 0 }, 
+        { "Snake charmer", 0 }, 
+        { "Wild tamer", 0 }, 
+        { "Uniter of the wold", 0 },
+        { "Wayfinder", 0 },
+        { "Alpha beast", 0 }, 
+        { "King beast", 0 }, 
+        { "Beast master", 0 } }, 
+      "Quetzalcoatl",
+      "Camaxtli",
+      "Huhetotl", 
+      "Arc",
+      "the College of Archeology",
+      "the Tomb of the Toltec Kings",
+      PM_ARCHEOLOGIST,
+      NON_PM,
+      NON_PM,
+      PM_LORD_CARNARVON,
+      PM_STUDENT,
+      PM_MINION_OF_HUHETOTL,
+      NON_PM,
+      PM_HUMAN_MUMMY,
+      S_SNAKE,
+      S_MUMMY,
+      ART_ORB_OF_DETECTION,
+      MH_HUMAN | MH_DWARF | MH_GNOME | ROLE_MALE | ROLE_FEMALE | ROLE_LAWFUL
+          | ROLE_NEUTRAL,
+      // Str Int Wis Dex Con Cha 
+      { 7, 10, 10, 7, 7, 7 },
+      { 20, 20, 20, 10, 20, 10 },
+      // Init   Lower  Higher 
+      { 11, 0, 0, 8, 1, 0 }, // Hit points 
+      { 1, 0, 0, 1, 0, 1 },
+      14, // Energy 
+      10,
+      5,
+      0,
+      2,
+      10,
+      A_INT,
+      SPE_CHARM_MONSTER,
+      -4 },*/
     { { "Caveman", "Cavewoman" },
       { { "Troglodyte", 0 },
         { "Aborigine", 0 },
@@ -151,6 +195,136 @@ const struct Role roles[] = {
       A_INT,
       SPE_DIG,
       -4 },
+ /*   { { "Dragon Rider", 0 },
+      { { "Gallant", 0 },
+        { "Esquire", 0 },
+        { "Bachelor", 0 },
+        { "Sergeant", 0 },
+        { "Knight", 0 },
+        { "Banneret", 0 },
+        { "Chevalier", "Chevaliere" },
+        { "Seignieur", "Dame" },
+        { "Paladin", 0 } },
+      "Lugh",
+      "_Brigit",
+      "Manannan Mac Lir", 
+      "Kni",
+      "Camelot Castle",
+      "the Isle of Glass",
+      PM_KNIGHT,
+      NON_PM,
+      PM_PONY,
+      PM_KING_ARTHUR,
+      PM_PAGE,
+      PM_IXOTH,
+      PM_QUASIT,
+      PM_OCHRE_JELLY,
+      S_IMP,
+      S_JELLY,
+      ART_MAGIC_MIRROR_OF_MERLIN,
+      MH_HUMAN | ROLE_MALE | ROLE_FEMALE | ROLE_LAWFUL,
+      // Str Int Wis Dex Con Cha 
+      { 13, 7, 14, 8, 10, 17 },
+      { 30, 15, 15, 10, 20, 10 },
+      // Init   Lower  Higher 
+      { 14, 0, 0, 8, 2, 0 }, // Hit points 
+      { 1, 4, 0, 1, 0, 2 },
+      10, // Energy 
+      10,
+      8,
+      -2,
+      0,
+      9,
+      A_WIS,
+      SPE_TURN_UNDEAD,
+      -4 },*/
+ /*   { { "Fire Mage", 0 },
+      { { "Evoker", 0 },
+        { "Conjurer", 0 },
+        { "Thaumaturge", 0 },
+        { "Magician", 0 },
+        { "Enchanter", "Enchantress" },
+        { "Sorcerer", "Sorceress" },
+        { "Necromancer", 0 },
+        { "Wizard", 0 },
+        { "Mage", 0 } },
+      "Ptah",
+      "Thoth",
+      "Anhur",
+      "Wiz",
+      "the Lonely Tower",
+      "the Tower of Darkness",
+      PM_WIZARD,
+      NON_PM,
+      PM_KITTEN,
+      PM_NEFERET_THE_GREEN,
+      PM_APPRENTICE,
+      PM_DARK_ONE,
+      PM_VAMPIRE_BAT,
+      PM_XORN,
+      S_BAT,
+      S_WRAITH,
+      ART_EYE_OF_THE_AETHIOPICA,
+      MH_HUMAN | MH_ELF | MH_GNOME | MH_ORC | ROLE_MALE | ROLE_FEMALE
+          | ROLE_NEUTRAL | ROLE_CHAOTIC,
+      // Str Int Wis Dex Con Cha
+      { 7, 10, 7, 7, 7, 7 },
+      { 10, 30, 10, 20, 20, 10 },
+      // Init   Lower  Higher
+      { 10, 0, 0, 8, 1, 0 }, // Hit points
+      { 4, 3, 0, 2, 0, 3 },
+      12, // Energy
+      0,
+      1,
+      0,
+      3,
+      10,
+      A_INT,
+      SPE_MAGIC_MISSILE,
+      -4 },*/
+/*    { { "Gunslinger", 0 },
+      { { "Stripling", 0 },
+        { "Skirmisher", 0 },
+        { "Fighter", 0 },
+        { "Man-at-arms", "Woman-at-arms" },
+        { "Warrior", 0 },
+        { "Swashbuckler", 0 },
+        { "Hero", "Heroine" },
+        { "Champion", 0 },
+        { "Lord", "Lady" } },
+      "Tyr",
+      "Odin",
+      "Loki", // Norse 
+      "Val",
+      "the Shrine of Destiny",
+      "the cave of Surtur",
+      PM_VALKYRIE,
+      NON_PM,
+      NON_PM //PM_WINTER_WOLF_CUB,
+      PM_NORN,
+      PM_WARRIOR,
+      PM_LORD_SURTUR,
+      PM_FIRE_ANT,
+      PM_FIRE_GIANT,
+      S_ANT,
+      S_GIANT,
+      ART_ORB_OF_FATE,
+      MH_HUMAN | MH_DWARF | ROLE_FEMALE | ROLE_LAWFUL | ROLE_NEUTRAL,
+      // Str Int Wis Dex Con Cha
+      { 10, 7, 7, 7, 10, 7 },
+      { 30, 6, 7, 20, 30, 7 },
+      // Init   Lower  Higher
+      { 14, 0, 0, 8, 2, 0 }, // Hit points
+      { 1, 0, 0, 1, 0, 1 },
+      10, // Energy
+      0,
+      10,
+      -2,
+      0,
+      9,
+      A_WIS,
+      SPE_CONE_OF_COLD,
+      -4 },*/
     { { "Healer", 0 },
       { { "Rhizotomist", 0 },
         { "Empiric", 0 },
@@ -161,7 +335,9 @@ const struct Role roles[] = {
         { "Magister", "Magistra" },
         { "Physician", 0 },
         { "Chirurgeon", 0 } },
-      "_Athena", "Hermes", "Poseidon", /* Greek */
+      "_Athena",
+      "Hermes",
+      "Poseidon", /* Greek */
       "Hea",
       "the Temple of Epidaurus",
       "the Temple of Coeus",
@@ -189,9 +365,53 @@ const struct Role roles[] = {
       -3,
       2,
       10,
-      A_WIS,
-      SPE_CURE_SICKNESS,
+	  A_WIS,
+	  SPE_CURE_SICKNESS,
       -4 },
+  /*  { { "Ice Mage", 0 },
+      { { "Evoker", 0 },
+        { "Conjurer", 0 },
+        { "Thaumaturge", 0 },
+        { "Magician", 0 },
+        { "Enchanter", "Enchantress" },
+        { "Sorcerer", "Sorceress" },
+        { "Necromancer", 0 },
+        { "Wizard", 0 },
+        { "Mage", 0 } },
+      "Ptah",
+      "Thoth",
+      "Anhur",
+      "Wiz",
+      "the Lonely Tower",
+      "the Tower of Darkness",
+      PM_WIZARD,
+      NON_PM,
+      PM_KITTEN,
+      PM_NEFERET_THE_GREEN,
+      PM_APPRENTICE,
+      PM_DARK_ONE,
+      PM_VAMPIRE_BAT,
+      PM_XORN,
+      S_BAT,
+      S_WRAITH,
+      ART_EYE_OF_THE_AETHIOPICA,
+      MH_HUMAN | MH_ELF | MH_GNOME | MH_ORC | ROLE_MALE | ROLE_FEMALE
+          | ROLE_NEUTRAL | ROLE_CHAOTIC,
+      // Str Int Wis Dex Con Cha
+      { 7, 10, 7, 7, 7, 7 },
+      { 10, 30, 10, 20, 20, 10 },
+      // Init   Lower  Higher
+      { 10, 0, 0, 8, 1, 0 }, // Hit points
+      { 4, 3, 0, 2, 0, 3 },
+      12, // Energy
+      0,
+      1,
+      0,
+      3,
+      10,
+      A_INT,
+      SPE_MAGIC_MISSILE,
+      -4 },*/
     { { "Knight", 0 },
       { { "Gallant", 0 },
         { "Esquire", 0 },
@@ -275,6 +495,94 @@ const struct Role roles[] = {
       A_WIS,
       SPE_RESTORE_ABILITY,
       -4 },
+/*    { { "Naked", 0 },
+      { { "Tenderfoot", 0 },
+        { "Lookout", 0 },
+        { "Trailblazer", 0 },
+        { "Reconnoiterer", "Reconnoiteress" },
+        { "Scout", 0 },
+        { "Arbalester", 0 }, // One skilled at crossbows 
+        { "Archer", 0 },
+        { "Sharpshooter", 0 },
+        { "Marksman", "Markswoman" } },
+      "Mercury",
+      "_Venus",
+      "Mars", // Roman/planets 
+      "Ran",
+      "Orion's camp",
+      "the cave of the wumpus",
+      PM_RANGER,
+      NON_PM,
+      PM_LITTLE_DOG // Orion & canis major ,
+      PM_ORION,
+      PM_HUNTER,
+      PM_SCORPIUS,
+      PM_FOREST_CENTAUR,
+      PM_SCORPION,
+      S_CENTAUR,
+      S_SPIDER,
+      ART_LONGBOW_OF_DIANA,
+      MH_HUMAN | MH_ELF | MH_GNOME | MH_ORC | ROLE_MALE | ROLE_FEMALE
+          | ROLE_NEUTRAL | ROLE_CHAOTIC,
+      // Str Int Wis Dex Con Cha 
+      { 13, 13, 13, 9, 13, 7 },
+      { 30, 10, 10, 20, 20, 10 },
+      // Init   Lower  Higher 
+      { 13, 0, 0, 6, 1, 0 }, // Hit points 
+      { 1, 0, 0, 1, 0, 1 },
+      12, // Energy 
+      10,
+      9,
+      2,
+      1,
+      10,
+      A_INT,
+      SPE_INVISIBILITY,
+      -4 },*/
+    /*    { { "Necromancer", 0 },
+      { { "Evoker", 0 },
+        { "Conjurer", 0 },
+        { "Thaumaturge", 0 },
+        { "Magician", 0 },
+        { "Enchanter", "Enchantress" },
+        { "Sorcerer", "Sorceress" },
+        { "Necromancer", 0 },
+        { "Wizard", 0 },
+        { "Mage", 0 } },
+      "Ptah",
+      "Thoth",
+      "Anhur", 
+      "Wiz",
+      "the Lonely Tower",
+      "the Tower of Darkness",
+      PM_WIZARD,
+      NON_PM,
+      PM_KITTEN,
+      PM_NEFERET_THE_GREEN,
+      PM_APPRENTICE,
+      PM_DARK_ONE,
+      PM_VAMPIRE_BAT,
+      PM_XORN,
+      S_BAT,
+      S_WRAITH,
+      ART_EYE_OF_THE_AETHIOPICA,
+      MH_HUMAN | MH_ELF | MH_GNOME | MH_ORC | ROLE_MALE | ROLE_FEMALE
+          | ROLE_NEUTRAL | ROLE_CHAOTIC,
+      // Str Int Wis Dex Con Cha 
+      { 7, 10, 7, 7, 7, 7 },
+      { 10, 30, 10, 20, 20, 10 },
+      // Init   Lower  Higher 
+      { 10, 0, 0, 8, 1, 0 }, // Hit points 
+      { 4, 3, 0, 2, 0, 3 },
+      12, // Energy 
+      0,
+      1,
+      0,
+      3,
+      10,
+      A_INT,
+      SPE_MAGIC_MISSILE,
+      -4 },*/
     { { "Pirate", 0 },
       { { "Landlubber", 0 },
 		{ "Swabbie", 0 },
@@ -300,7 +608,7 @@ const struct Role roles[] = {
 	  S_RODENT,
 	  S_ELEMENTAL,
       ART_ORB_OF_FATE, // TODO: ADD QUEST ARTIFACT
-      MH_HUMAN | MH_ELF | MH_ORC | ROLE_MALE | ROLE_FEMALE | ROLE_NEUTRAL | ROLE_CHAOTIC, 
+      MH_HUMAN | MH_GNOME | MH_ORC | ROLE_MALE | ROLE_FEMALE | ROLE_NEUTRAL | ROLE_CHAOTIC, // TODO ADD Drow (new race)
 	  /* Str Int Wis Dex Con Cha */
 	  { 7, 10, 10, 7, 7, 7 },
       { 20, 20, 20, 15, 20, 10 },
@@ -458,16 +766,16 @@ const struct Role roles[] = {
       SPE_INVISIBILITY,
       -4 },
     { { "Samurai", 0 },
-      { { "Hatamoto", 0 },       /* Banner Knight */
-        { "Ronin", 0 },          /* no allegiance */
-        { "Ninja", "Kunoichi" }, /* secret society */
-        { "Joshu", 0 },          /* heads a castle */
-        { "Ryoshu", 0 },         /* has a territory */
-        { "Kokushu", 0 },        /* heads a province */
-        { "Daimyo", 0 },         /* a samurai lord */
-        { "Kuge", 0 },           /* Noble of the Court */
-        { "Shogun", 0 } },       /* supreme commander, warlord */
-      "_Amaterasu Omikami", "Raijin", "Susanowo", /* Japanese */
+      { { "Hatamoto", 0 },       // Banner Knight 
+        { "Ronin", 0 },          // no allegiance
+        { "Ninja", "Kunoichi" }, // secret society 
+        { "Joshu", 0 },          // heads a castle 
+        { "Ryoshu", 0 },         // has a territory 
+        { "Kokushu", 0 },        // heads a province
+        { "Daimyo", 0 },         // a samurai lord 
+        { "Kuge", 0 },           // Noble of the Court
+        { "Shogun", 0 } },       // supreme commander, warlord 
+      "_Amaterasu Omikami", "Raijin", "Susanowo", // Japanese 
       "Sam",
       "the Castle of the Taro Clan",
       "the Shogun's Castle",
@@ -483,13 +791,13 @@ const struct Role roles[] = {
       S_ELEMENTAL,
       ART_TSURUGI_OF_MURAMASA,
       MH_HUMAN | ROLE_MALE | ROLE_FEMALE | ROLE_LAWFUL,
-      /* Str Int Wis Dex Con Cha */
+      // Str Int Wis Dex Con Cha 
       { 10, 8, 7, 10, 17, 6 },
       { 30, 10, 8, 30, 14, 8 },
-      /* Init   Lower  Higher */
-      { 13, 0, 0, 8, 1, 0 }, /* Hit points */
+      // Init   Lower  Higher 
+      { 13, 0, 0, 8, 1, 0 }, // Hit points 
       { 1, 0, 0, 1, 0, 1 },
-      11, /* Energy */
+      11, // Energy 
       10,
       10,
       0,
@@ -498,6 +806,49 @@ const struct Role roles[] = {
       A_INT,
       SPE_CLAIRVOYANCE,
       -4 },
+/*    { { "Shinobi", 0 },
+      { { "Hatamoto", 0 },       // Banner Knight
+        { "Ronin", 0 },          // no allegiance
+        { "Ninja", "Kunoichi" }, // secret society
+        { "Joshu", 0 },          // heads a castle
+        { "Ryoshu", 0 },         // has a territory
+        { "Kokushu", 0 },        // heads a province
+        { "Daimyo", 0 },         // a samurai lord
+        { "Kuge", 0 },           // Noble of the Court
+        { "Shogun", 0 } },       // supreme commander, warlord
+      "_Amaterasu Omikami",
+      "Raijin",
+      "Susanowo", // Japanese
+      "Sam",
+      "the Castle of the Taro Clan",
+      "the Shogun's Castle",
+      PM_SAMURAI,
+      NON_PM,
+      PM_LITTLE_DOG,
+      PM_LORD_SATO,
+      PM_ROSHI,
+      PM_ASHIKAGA_TAKAUJI,
+      PM_WOLF,
+      PM_STALKER,
+      S_DOG,
+      S_ELEMENTAL,
+      ART_TSURUGI_OF_MURAMASA,
+      MH_HUMAN | ROLE_MALE | ROLE_FEMALE | ROLE_LAWFUL,
+      // Str Int Wis Dex Con Cha
+      { 10, 8, 7, 10, 17, 6 },
+      { 30, 10, 8, 30, 14, 8 },
+      // Init   Lower  Higher
+      { 13, 0, 0, 8, 1, 0 }, // Hit points
+      { 1, 0, 0, 1, 0, 1 },
+      11, // Energy
+      10,
+      10,
+      0,
+      0,
+      8,
+      A_INT,
+      SPE_CLAIRVOYANCE,
+      -4 },*/
     { { "Tourist", 0 },
       { { "Rambler", 0 },
         { "Sightseer", 0 },
@@ -539,6 +890,49 @@ const struct Role roles[] = {
       A_INT,
       SPE_CHARM_MONSTER,
       -4 },
+  /*  { { "Undead Slayer", 0 },
+      { { "Stripling", 0 },
+        { "Skirmisher", 0 },
+        { "Fighter", 0 },
+        { "Man-at-arms", "Woman-at-arms" },
+        { "Warrior", 0 },
+        { "Swashbuckler", 0 },
+        { "Hero", "Heroine" },
+        { "Champion", 0 },
+        { "Lord", "Lady" } },
+      "Tyr",
+      "Odin",
+      "Loki", // Norse 
+      "Val",
+      "the Shrine of Destiny",
+      "the cave of Surtur",
+      PM_VALKYRIE,
+      NON_PM,
+      NON_PM //PM_WINTER_WOLF_CUB,
+      PM_NORN,
+      PM_WARRIOR,
+      PM_LORD_SURTUR,
+      PM_FIRE_ANT,
+      PM_FIRE_GIANT,
+      S_ANT,
+      S_GIANT,
+      ART_ORB_OF_FATE,
+      MH_HUMAN | MH_DWARF | ROLE_FEMALE | ROLE_LAWFUL | ROLE_NEUTRAL,
+      // Str Int Wis Dex Con Cha
+      { 10, 7, 7, 7, 10, 7 },
+      { 30, 6, 7, 20, 30, 7 },
+      // Init   Lower  Higher
+      { 14, 0, 0, 8, 2, 0 }, // Hit points
+      { 1, 0, 0, 1, 0, 1 },
+      10, // Energy
+      0,
+      10,
+      -2,
+      0,
+      9,
+      A_WIS,
+      SPE_CONE_OF_COLD,
+      -4 },*/
     { { "Valkyrie", 0 },
       { { "Stripling", 0 },
         { "Skirmisher", 0 },
@@ -549,13 +943,13 @@ const struct Role roles[] = {
         { "Hero", "Heroine" },
         { "Champion", 0 },
         { "Lord", "Lady" } },
-      "Tyr", "Odin", "Loki", /* Norse */
+      "Tyr", "Odin", "Loki", // Norse 
       "Val",
       "the Shrine of Destiny",
       "the cave of Surtur",
       PM_VALKYRIE,
       NON_PM,
-      NON_PM /*PM_WINTER_WOLF_CUB*/,
+      PM_WINTER_WOLF_CUB,
       PM_NORN,
       PM_WARRIOR,
       PM_LORD_SURTUR,
@@ -565,13 +959,13 @@ const struct Role roles[] = {
       S_GIANT,
       ART_ORB_OF_FATE,
       MH_HUMAN | MH_DWARF | ROLE_FEMALE | ROLE_LAWFUL | ROLE_NEUTRAL,
-      /* Str Int Wis Dex Con Cha */
+      // Str Int Wis Dex Con Cha
       { 10, 7, 7, 7, 10, 7 },
       { 30, 6, 7, 20, 30, 7 },
-      /* Init   Lower  Higher */
-      { 14, 0, 0, 8, 2, 0 }, /* Hit points */
+      // Init   Lower  Higher 
+      { 14, 0, 0, 8, 2, 0 }, // Hit points 
       { 1, 0, 0, 1, 0, 1 },
-      10, /* Energy */
+      10, // Energy 
       0,
       10,
       -2,
@@ -580,6 +974,49 @@ const struct Role roles[] = {
       A_WIS,
       SPE_CONE_OF_COLD,
       -4 },
+  /*  { { "Yeoman", 0 },
+      { { "Gallant", 0 },
+        { "Esquire", 0 },
+        { "Bachelor", 0 },
+        { "Sergeant", 0 },
+        { "Knight", 0 },
+        { "Banneret", 0 },
+        { "Chevalier", "Chevaliere" },
+        { "Seignieur", "Dame" },
+        { "Paladin", 0 } },
+      "Lugh",
+      "_Brigit",
+      "Manannan Mac Lir",
+      "Kni",
+      "Camelot Castle",
+      "the Isle of Glass",
+      PM_KNIGHT,
+      NON_PM,
+      PM_PONY,
+      PM_KING_ARTHUR,
+      PM_PAGE,
+      PM_IXOTH,
+      PM_QUASIT,
+      PM_OCHRE_JELLY,
+      S_IMP,
+      S_JELLY,
+      ART_MAGIC_MIRROR_OF_MERLIN,
+      MH_HUMAN | ROLE_MALE | ROLE_FEMALE | ROLE_LAWFUL,
+      // Str Int Wis Dex Con Cha
+      { 13, 7, 14, 8, 10, 17 },
+      { 30, 15, 15, 10, 20, 10 },
+      // Init   Lower  Higher
+      { 14, 0, 0, 8, 2, 0 }, // Hit points
+      { 1, 4, 0, 1, 0, 2 },
+      10, // Energy
+      10,
+      8,
+      -2,
+      0,
+      9,
+      A_WIS,
+      SPE_TURN_UNDEAD,
+      -4 }*/
     { { "Wizard", 0 },
       { { "Evoker", 0 },
         { "Conjurer", 0 },

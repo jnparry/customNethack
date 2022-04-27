@@ -1,3 +1,15 @@
+---------------------------------------------------------------------------------
+
+         customNetHack Mods Info
+In your C:\Users\[username]\NetHack file, you'll need to edit the .nethackrc file to include this line:
+        OPTIONS=tile_file:\Users\[username]\[path to customNetHack]\customTiles\tiles16c.bmp,tile_width:16,tile_height:16
+
+For example, our .nethackrc file has these two lines at the very bottom:
+        # Custom tileset
+        OPTIONS=tile_file:\Users\Caleb\Documents\customNetHack\customTiles\tiles16c.bmp,tile_width:16,tile_height:16
+
+---------------------------------------------------------------------------------
+
          NetHack 3.6.6 -- General information March 2020
 
 NetHack 3.6 is an enhancement to the dungeon exploration game NetHack,

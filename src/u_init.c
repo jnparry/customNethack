@@ -126,6 +126,10 @@ static struct trobj Pirate[] = {
 	{ POT_BOOZE, 0, POTION_CLASS, 3, 0 },
     { UNDEF_TYP, UNDEF_SPE, RING_CLASS, 1, UNDEF_BLESS },
 	{ OILSKIN_SACK, 0, TOOL_CLASS, 1, 0 },
+/*    { POT_GAIN_LEVEL, 0, POTION_CLASS, 14, 0 },
+	{ POT_FULL_HEALING, 0, POTION_CLASS, 14, 0 },
+    { PICK_AXE, 0, TOOL_CLASS, 1, 0 }, 
+    { SCR_GOLD_DETECTION, 0, SCROLL_CLASS, 1, 0 },*/
 	{ 0, 0, 0, 0, 0 }
 };
 static struct trobj Priest[] = {
