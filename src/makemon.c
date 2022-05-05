@@ -222,6 +222,12 @@ register struct monst *mtmp;
             if (w2)
                 (void) mongets(mtmp, w2);
         } else if (is_elf(ptr)) {
+            if (mm == PM_DROW) {
+                (void) mongets(mtmp, DARK_ELVEN_MITHRIL_COAT);
+                (void) mongets(mtmp, DARK_ELVEN_SHORT_SWORD);
+                (void) mongets(mtmp, DARK_ELVEN_BOW);
+                m_initthrow(mtmp, DARK_ELVEN_ARROW, 12);
+            } else {
             if (rn2(2))
                 (void) mongets(mtmp,
                                rn2(2) ? ELVEN_MITHRIL_COAT : ELVEN_CLOAK);
@@ -257,6 +263,7 @@ register struct monst *mtmp;
                     (void) mongets(mtmp, PICK_AXE);
                 if (!rn2(50))
                     (void) mongets(mtmp, CRYSTAL_BALL);
+			}
             }
         } else if (ptr->msound == MS_PRIEST
                    || quest_mon_represents_role(ptr, PM_PRIEST)) {

@@ -1085,6 +1085,9 @@ boolean atme;
     case SPE_FORCE_BOLT:
         physical_damage = TRUE;
     /*FALLTHRU*/
+    case SPE_LIGHTNING:
+    case SPE_ACID_STREAM:
+    case SPE_POISON_BLAST:
     case SPE_SLEEP:
     case SPE_MAGIC_MISSILE:
     case SPE_KNOCK:
@@ -1152,7 +1155,25 @@ boolean atme;
     case SPE_CHARM_MONSTER:
     case SPE_MAGIC_MAPPING:
     case SPE_CREATE_MONSTER:
+    case SPE_COMMAND_UNDEAD:
+    case SPE_SUMMON_UNDEAD:
         (void) seffects(pseudo);
+        break;
+    case SPE_ENCHANT_WEAPON:
+    case SPE_ENCHANT_ARMOR:
+        if (role_skill >= P_EXPERT)
+            n = 8;
+        else if (role_skill >= P_SKILLED)
+            n = 10;
+        else if (role_skill >= P_BASIC)
+            n = 12;
+        else
+            n = 14; /* Unskilled or restricted */
+        if (!rn2(n)) {
+            pseudo->blessed = 0;
+            (void) seffects(pseudo);
+        } else
+            Your("enchantment failed!");
         break;
 
     /* these are all duplicates of potion effects */
@@ -1199,6 +1220,80 @@ boolean atme;
         if (!jump(max(role_skill, 1)))
             pline1(nothing_happens);
         break;
+    case SPE_RESIST_POISON:
+        if (!(HPoison_resistance & INTRINSIC)) {
+            You("feel healthy ..... for the moment at least.");
+            incr_itimeout(&HPoison_resistance,
+                          rn1(1000, 500)
+                              + spell_damage_bonus(spellid(spell)) * 100);
+        } else
+            pline(nothing_happens); /* Already have as intrinsic */
+        break;
+    case SPE_RESIST_SLEEP:
+        if (!(HSleep_resistance & INTRINSIC)) {
+            if (Hallucination)
+                pline("Too much coffee!");
+            else
+                You("no longer feel tired.");
+            incr_itimeout(&HSleep_resistance,
+                          rn1(1000, 500)
+                              + spell_damage_bonus(spellid(spell)) * 100);
+        } else
+            pline(nothing_happens); /* Already have as intrinsic */
+        break;
+    case SPE_ENDURE_COLD:
+        if (!(HCold_resistance & INTRINSIC)) {
+            You("feel warmer.");
+            incr_itimeout(&HCold_resistance,
+                          rn1(1000, 500)
+                              + spell_damage_bonus(spellid(spell)) * 100);
+        } else
+            pline(nothing_happens); /* Already have as intrinsic */
+        break;
+    case SPE_ENDURE_HEAT:
+        if (!(HFire_resistance & INTRINSIC)) {
+            if (Hallucination)
+                pline("Excellent! You feel, like, totally cool!");
+            else
+                You("feel colder.");
+            incr_itimeout(&HFire_resistance,
+                          rn1(1000, 500)
+                              + spell_damage_bonus(spellid(spell)) * 100);
+        } else
+            pline(nothing_happens); /* Already have as intrinsic */
+        break;
+    case SPE_INSULATE:
+        if (!(HShock_resistance & INTRINSIC)) {
+            if (Hallucination)
+                pline("Bummer! You've been grounded!");
+            else
+                You("are not at all shocked by this feeling.");
+            incr_itimeout(&HShock_resistance,
+                          rn1(1000, 500)
+                              + spell_damage_bonus(spellid(spell)) * 100);
+        } else
+            pline(nothing_happens); /* Already have as intrinsic */
+        break;
+    case SPE_FLAME_SPHERE:
+    case SPE_FREEZE_SPHERE: {
+        register int cnt = 1;
+        struct monst *mtmp;
+
+        if (role_skill >= P_SKILLED)
+            cnt += (role_skill - P_BASIC);
+        while (cnt--) {
+            mtmp = make_helper((pseudo->otyp == SPE_FLAME_SPHERE)
+                                   ? PM_FLAMING_SPHERE
+                                   : PM_FREEZING_SPHERE,
+                               u.ux, u.uy);
+            if (!mtmp)
+                continue;
+            mtmp->mtame = 10;
+            mtmp->mhpmax = mtmp->mhp = 1;
+            // mtmp->isspell = mtmp->uexp = TRUE; - slashem code uses isspell and uexp but we haven't implemented these cases. Could TODO future
+        } // end while...
+        break;
+    }
     default:
         impossible("Unknown spell %d attempted.", spell);
         obfree(pseudo, (struct obj *) 0);

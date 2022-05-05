@@ -32,13 +32,39 @@ static const struct innate {
                  { 7, &(HFast), "quick", "slow" },
                  { 15, &(HStealth), "stealthy", "" },
                  { 0, 0, 0, 0 } },
+  
+  bea_abil[] = { { 5, &(HStealth), "stealthy", "" },
+                 { 7, &(HFast), "quick", "slow" },
+                 { 0, 0, 0, 0 } },
 
   cav_abil[] = { { 7, &(HFast), "quick", "slow" },
                  { 15, &(HWarning), "sensitive", "" },
                  { 0, 0, 0, 0 } },
 
+  dra_abil[] = { { 7, &(HFast), "quick", "slow" },
+                 { 13, &(HPoison_resistance), "healthy", "" },
+                 { 14, &(HSleep_resistance), "", "" },
+                 { 15, &(HFire_resistance), "cool", "warmer" },
+                 { 16, &(HCold_resistance), "warm", "cooler" },
+                 { 17, &(HShock_resistance), "insulated", "conductive" },
+                 { 18, &(HDisint_resistance), "firm", "softer" },
+                 { 0, 0, 0, 0 } },
+
+  fla_abil[] = { { 1, &(HFire_resistance), "", "" },
+                 { 13, &(HCold_resistance), "warm", "cooler" },
+                 { 0, 0, 0, 0 } },
+
+  gun_abil[] = { { 1, &(HStealth), "", "" },
+                 { 5, &(HFast), "quick", "slow" },
+                 { 10, &(HWarning), "sensitive", "" },
+                 { 0, 0, 0, 0 } },
+
   hea_abil[] = { { 1, &(HPoison_resistance), "", "" },
                  { 15, &(HWarning), "sensitive", "" },
+                 { 0, 0, 0, 0 } },
+
+  ice_abil[] = { { 1, &(HCold_resistance), "", "" },
+                 { 13, &(HFire_resistance), "cool", "warmer" },
                  { 0, 0, 0, 0 } },
 
   kni_abil[] = { { 7, &(HFast), "quick", "slow" }, { 0, 0, 0, 0 } },
@@ -54,6 +80,13 @@ static const struct innate {
                  { 13, &(HCold_resistance), "warm", "cooler" },
                  { 15, &(HShock_resistance), "insulated", "conductive" },
                  { 17, &(HTeleport_control), "controlled", "uncontrolled" },
+                 { 0, 0, 0, 0 } },
+
+  nak_abil[] = { { 0, 0, 0, 0 } },
+
+  nec_abil[] = { { 1, &(HDrain_resistance), "", "" },
+                 { 1, &(HSick_resistance), "", "" },
+                 { 3, &(HUndead_warning), "sensitive", "" },
                  { 0, 0, 0, 0 } },
 
   pir_abil[] = { { 7, &(HStealth), "stealthy", "" },
@@ -77,13 +110,29 @@ static const struct innate {
                  { 15, &(HStealth), "stealthy", "" },
                  { 0, 0, 0, 0 } },
 
+  shi_abil[] = { { 1, &(HFast), "", "" },
+                 { 15, &(HStealth), "stealthy", "" },
+                 { 0, 0, 0, 0 } },
+
   tou_abil[] = { { 10, &(HSearching), "perceptive", "" },
                  { 20, &(HPoison_resistance), "hardy", "" },
+                 { 0, 0, 0, 0 } },
+
+  und_abil[] = { { 1, &(HStealth), "", "" },
+                 { 1, &(HDrain_resistance), "", "" },
+                 { 1, &(HSick_resistance), "", "" },
+                 { 1, &(HUndead_warning), "", "" },
+                 { 7, &(HFast), "quick", "slow" },
+                 { 9, &(HPoison_resistance), "hardy", "less healthy" },
                  { 0, 0, 0, 0 } },
 
   val_abil[] = { { 1, &(HCold_resistance), "", "" },
                  { 1, &(HStealth), "", "" },
                  { 7, &(HFast), "quick", "slow" },
+                 { 0, 0, 0, 0 } },
+
+  yeo_abil[] = { { 7, &(HFast), "quick", "slow" },
+                 { 15, &(HSwimming), "ready to swim", "afraid of the water" },
                  { 0, 0, 0, 0 } },
 
   wiz_abil[] = { { 15, &(HWarning), "sensitive", "" },
@@ -99,6 +148,10 @@ static const struct innate {
                  { 0, 0, 0, 0 } },
 
   gno_abil[] = { { 1, &HInfravision, "", "" },
+                 { 0, 0, 0, 0 } },
+
+  hob_abil[] = { { 1, &(HStealth), "", "" },
+                 { 7, &(HFast), "quick", "slow" },
                  { 0, 0, 0, 0 } },
 
   orc_abil[] = { { 1, &HInfravision, "", "" },
@@ -707,18 +760,28 @@ int r;
         const struct innate *abil;
     } roleabils[] = {
         { PM_ARCHEOLOGIST, arc_abil },
-        { PM_BARBARIAN, bar_abil },
-        { PM_CAVEMAN, cav_abil },
+        { PM_BARBARIAN, bar_abil },        
+	    { PM_BEAST_TAMER, bea_abil },
+        { PM_CAVEMAN, cav_abil },  
+        { PM_DRAGON_RIDER, dra_abil },
+		{ PM_FLAME_MAGE, fla_abil },
+        { PM_GUNSLINGER, gun_abil },
         { PM_HEALER, hea_abil },
+        { PM_ICE_MAGE, ice_abil },
         { PM_KNIGHT, kni_abil },
         { PM_MONK, mon_abil },
+        { PM_NAKED, nak_abil },
+        { PM_NECROMANCER, nec_abil },
         { PM_PIRATE, pir_abil },
         { PM_PRIEST, pri_abil },
         { PM_RANGER, ran_abil },
         { PM_ROGUE, rog_abil },
         { PM_SAMURAI, sam_abil },
+        { PM_SHINOBI, shi_abil },
         { PM_TOURIST, tou_abil },
+        { PM_UNDEAD_SLAYER, und_abil },
         { PM_VALKYRIE, val_abil },
+		{ PM_YEOMAN, yeo_abil },
         { PM_WIZARD, wiz_abil },
         { 0, 0 }
     };
@@ -743,11 +806,15 @@ long frommask;
         case PM_DWARF:
             abil = dwa_abil;
             break;
+        case PM_DROW:
         case PM_ELF:
             abil = elf_abil;
             break;
         case PM_GNOME:
             abil = gno_abil;
+            break;
+        case PM_HOBBIT:
+            abil = hob_abil;
             break;
         case PM_ORC:
             abil = orc_abil;

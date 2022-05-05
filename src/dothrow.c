@@ -138,6 +138,11 @@ int shotlimit;
             if (skill == -P_SLING || skill == P_SPEAR)
                 multishot++;
             break;
+        case PM_GUNSLINGER:
+            /* possibly should add knives... */
+            if (skill == P_FIREARM)
+                multishot++;
+            break;
         case PM_MONK:
             /* allow higher volley count despite skill limitation */
             if (skill == -P_SHURIKEN)
@@ -1097,7 +1102,16 @@ struct obj *obj;
 long wep_mask; /* used to re-equip returning boomerang */
 boolean twoweap; /* used to restore twoweapon mode if wielded weapon returns */
 {
-    register struct monst *mon;
+    // in slashem, there are checks done here to see if the obj thrown was
+    // thrown from off-handed weapon, but we don't have that implemented yet.
+    // Can look TODO in the future *JNP 
+	struct obj *launcher;
+    if (uwep)
+        launcher = uwep;
+    else
+        launcher = (struct obj *) 0;
+	
+	register struct monst *mon;
     int range, urange;
     boolean crossbowing, clear_thrownobj = FALSE,
             impaired = (Confusion || Stunned || Blind
@@ -1105,6 +1119,14 @@ boolean twoweap; /* used to restore twoweapon mode if wielded weapon returns */
             tethered_weapon = (obj->otyp == AKLYS && (wep_mask & W_WEP) != 0);
 
     notonhead = FALSE; /* reset potentially stale value */
+
+		/* KMH -- Handle Plague here */
+    if (launcher && launcher->oartifact == ART_PLAGUE
+        && ammo_and_launcher(obj, launcher) && is_poisonable(obj))
+        obj->opoisoned = 1;
+
+    obj->was_thrown = 1;
+
     if ((obj->cursed || obj->greased) && (u.dx || u.dy) && !rn2(7)) {
         boolean slipok = TRUE;
 
@@ -1535,6 +1557,7 @@ register struct obj *obj; /* thrownobj or kickedobj or uwep */
     int otyp = obj->otyp, hmode;
     boolean guaranteed_hit = (u.uswallow && mon == u.ustuck);
     int dieroll;
+	struct obj *launcher;
 
     hmode = (obj == uwep) ? HMON_APPLIED
               : (obj == kickedobj) ? HMON_KICKED
@@ -1551,6 +1574,15 @@ register struct obj *obj; /* thrownobj or kickedobj or uwep */
      * Certain items which don't in themselves do damage ignore 'tmp'.
      * Distance and monster size affect chance to hit.
      */
+
+	// in slashem, there are checks done here to see if the obj thrown was
+    // thrown from off-handed weapon, but we don't have that implemented yet.
+    // Can look TODO in the future *JNP
+    if (uwep)
+        launcher = uwep;
+    else
+        launcher = (struct obj *) 0;
+
     tmp = -1 + Luck + find_mac(mon) + u.uhitinc
           + maybe_polyd(youmonst.data->mlevel, u.ulevel);
     if (ACURR(A_DEX) < 4)
@@ -1662,11 +1694,13 @@ register struct obj *obj; /* thrownobj or kickedobj or uwep */
                  * especially their own special types of bow.
                  * Polymorphing won't make you a bow expert.
                  */
-                if ((Race_if(PM_ELF) || Role_if(PM_SAMURAI))
+                if ((Race_if(PM_ELF) || Race_if(PM_DROW) || Role_if(PM_SAMURAI))
                     && (!Upolyd || your_race(youmonst.data))
                     && objects[uwep->otyp].oc_skill == P_BOW) {
                     tmp++;
                     if (Race_if(PM_ELF) && uwep->otyp == ELVEN_BOW)
+                        tmp++;
+                    else if (Role_if(PM_DROW) && uwep->otyp == DARK_ELVEN_BOW)
                         tmp++;
                     else if (Role_if(PM_SAMURAI) && uwep->otyp == YUMI)
                         tmp++;
@@ -1704,12 +1738,26 @@ register struct obj *obj; /* thrownobj or kickedobj or uwep */
             if (wasthrown && !thrownobj)
                 return 1;
 
+			/* Detonate bolts shot by Hellfire */
+            if (ammo_and_launcher(obj, launcher)
+                && (launcher->oartifact == ART_HELLFIRE)) {
+                if (cansee(bhitpos.x, bhitpos.y))
+                    pline("%s explodes in a ball of fire!", Doname2(obj));
+                else
+                    You_hear("an explosion");
+                explode(bhitpos.x, bhitpos.y, ZT_SPELL(ZT_FIRE), d(2, 6),
+                        WEAPON_CLASS, EXPL_FIERY);
+            }
+
             /* projectiles other than magic stones sometimes disappear
                when thrown; projectiles aren't among the types of weapon
                that hmon() might have destroyed so obj is intact */
-            if (objects[otyp].oc_skill < P_NONE
-                && objects[otyp].oc_skill > -P_BOOMERANG
-                && !objects[otyp].oc_magic) {
+            if (((objects[otyp].oc_skill < P_NONE
+                && objects[otyp].oc_skill > -P_BOOMERANG) || 
+				(obj->oclass == GEM_CLASS && !objects[otyp].oc_magic)) ||
+				(launcher && launcher->oartifact == ART_HELLFIRE &&
+					is_ammo(obj) && ammo_and_launcher(obj, launcher)) 
+			) {
                 /* we were breaking 2/3 of everything unconditionally.
                  * we still don't want anything to survive unconditionally,
                  * but we need ammo to stay around longer on average.

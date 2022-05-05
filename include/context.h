@@ -77,6 +77,11 @@ struct polearm_info {
     unsigned m_id;        /* monster id of hitmon, in save file */
 };
 
+struct whip_sword_info {
+    struct monst *hitmon; /* the monster we tried to hit last */
+    unsigned m_id;        /* monster id of hitmon, in save file */
+};
+
 struct obj_split {
     unsigned parent_oid, /* set: splitobj(),         */
              child_oid;  /* reset: clear_splitobjs() */
@@ -137,6 +142,7 @@ struct context_info {
     struct takeoff_info takeoff;
     struct warntype_info warntype;
     struct polearm_info polearm;
+    struct whip_sword_info whip_sword;
     struct obj_split objsplit; /* track most recently split object stack */
     struct tribute_info tribute;
     struct novel_tracking novel;

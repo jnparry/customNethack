@@ -148,6 +148,37 @@ boolean quietly;
     return mtmp;
 }
 
+struct monst *make_helper(mnum, x, y) int mnum;
+xchar x, y;
+{
+    struct permonst *pm;
+    struct monst *mtmp = 0;
+    int trycnt = 100;
+
+    do {
+        pm = &mons[mnum];
+
+        //pm->pxlth += sizeof(struct edog); // slashem has new property for pm, but we don't use this, could TODO later
+        mtmp = makemon(pm, x, y, MM_EDOG); // originally MM_EDOG was NO_MM_FLAGS, but initedog throws a null ptr exception, so we changed it so makemon creates the edog structure
+        //pm->pxlth -= sizeof(struct edog);
+    } while (!mtmp && --trycnt > 0);
+
+    if (!mtmp)
+        return ((struct monst *) 0); /* genocided */
+
+    initedog(mtmp);
+    mtmp->msleeping = 0;
+    set_malign(mtmp); /* more alignment changes */
+    newsym(mtmp->mx, mtmp->my);
+
+    /* must wield weapon immediately since pets will otherwise drop it */
+    if (mtmp->mtame && attacktype(mtmp->data, AT_WEAP)) {
+        mtmp->weapon_check = NEED_HTH_WEAPON;
+        (void) mon_wield_item(mtmp);
+    }
+    return (mtmp);
+}
+
 struct monst *
 makedog()
 {
@@ -188,7 +219,7 @@ makedog()
 
     context.startingpet_mid = mtmp->m_id;
     /* Horses already wear a saddle */
-    if (pettype == PM_PONY && !!(otmp = mksobj(SADDLE, TRUE, FALSE))) {
+    if (pettype == (PM_PONY || PM_BABY_RED_DRAGON) && !!(otmp = mksobj(SADDLE, TRUE, FALSE))) {
         otmp->dknown = otmp->bknown = otmp->rknown = 1;
         put_saddle_on_mon(otmp, mtmp);
     }

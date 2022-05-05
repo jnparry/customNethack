@@ -66,6 +66,8 @@ enum invoke_prop_types {
     LEV_TELE,
     CREATE_PORTAL,
     ENLIGHTENING,
+    SUMMON_FIRE_ELEMENTAL,
+    SUMMON_WATER_ELEMENTAL,
     CREATE_AMMO
 };
 

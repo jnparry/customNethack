@@ -564,6 +564,247 @@ speaks of you.
 "This is all I know, %p.  I hope it will help you."
 %E ["Take the Amulet to the altar of %d on the Astral Plane and offer it."]
 #
+#       Beast Tamer
+#
+# The quest artifact is "The Eyes of the Overworld", hence needs
+# to be treated as plural by messages which use %o.
+#
+%Cc Tam 00001
+You find yourself standing in sight of %H.
+Something is obviously wrong here.  Strange shapes lumber around
+outside %H!
+
+You realize that the %l needs your assistance!
+%E [You have reached %H but something is wrong.  %lC needs your aid.]
+%Cp Tam 00002
+Once again, you stand before %H.
+%E
+%Cp Tam 00003
+Again you face %H.  Your intuition hints that this
+may be the final time you come here.
+%E
+%Cp Tam 00005
+"Greetings, honorable %r.  It is good to see you."
+%E
+%Cp Tam 00006
+"Ah, %p!  Surely you can help us in our hour of need."
+%E
+%Cp Tam 00007
+"Greetings, %s.  %lC has great need of your help."
+%E
+%Cp Tam 00008
+"Alas, it seems as if even %d has deserted us."
+%E
+%Cp Tam 00009
+"May %d be with you, %s."
+%E
+%Cp Tam 00010
+"Greetings, honorable %r.  It is good to see you again."
+%E
+%Cp Tam 00011
+"Ah, %p!  Our deepest gratitude for all of your help."
+%E
+%Cp Tam 00012
+"Greetings, %s.  Perhaps you will take some time to meditate with us?"
+%E
+%Cp Tam 00013
+"With this test behind you, may %d bring you enlightenment."
+%E
+%Cp Tam 00014
+"May %d be with you, %s."
+%E
+%Cc Tam 00015
+"Ah, %p, my %S.  You have returned to us at last.
+A great blow has befallen our order; perhaps you can help us.
+First, however, I must determine if you are prepared for this
+great challenge."
+%E [%lC checks whether you are ready for the great challenge.]
+%Cp Tam 00016
+"Again, my %S, you stand before me.  Are you ready now to help us?"
+%E
+%Cp Tam 00017
+"Once more, %p, you stand within the sanctum.  Are you ready now?"
+%E
+%Cc Tam 00018
+"You are a heretic, %p!  How can you, %ra, deviate so from the
+teachings of %d?  Begone from this temple.  You are no longer
+%sa to this order.  We will pray to %d for other assistance,
+as you have failed us utterly."
+%E [You are a heretic and have failed utterly.]
+%Cc Tam 00019
+"Alas, %p, it is not yet to be.  A mere %r could never
+withstand the might of %n.  Go forth, again into the world, and
+return when you have attained the post of %R."
+%E [You are not ready to face %n.  Come back when you are %Ra.]
+%Cc Tam 00020
+"This is terrible, %p.  You have deviated from the true path!
+You know that %d requires the most strident devotion of this
+order.  The %shood must stand for utmost piety.
+
+"Go from here, atone for your sins against %d.  Return only when
+you have purified yourself."
+%E [You must atone.  Come back when you are worthy of %d.]
+%Cc Tam 00021
+"Yes, %p.  You are truly ready now.  Attend to me and I shall
+tell you of what has transpired:
+
+"During one of the Great Meditations a short time ago, %n and
+a legion of elementals invaded %H.  Many %gP
+were killed, including the one bearing %o.
+
+Now, there are barely enough %gP left to keep the elementals
+at bay.
+
+"We need you to find %i, then, from there,
+travel to %ns lair.  If you can manage to defeat %n and
+return %o here, we can then drive off the legions
+of elementals that slay our students.
+
+"Go with %d as your guide, %p."
+%E [Find %i, then continue to %ns lair.  Defeat %ni and return with %o.]
+%Cp Tam 00025
+"You can prevail, if you rely on %d."
+%E
+%Cp Tam 00026
+"Remember that %n has great magic at his command."
+%E
+%Cp Tam 00027
+"Be pure, my %S."
+%E
+%Cp Tam 00028
+"Beware, %i is surrounded by hordes of earth elementals."
+%E
+%Cp Tam 00029
+"Remember your studies, and you will prevail!"
+%E
+%Cp Tam 00030
+"Acquire and wear %o if you can.  They will aid you
+against %n."
+%E
+%Cp Tam 00031
+"Call upon %d when your need is greatest.  You will be answered."
+%E
+%Cp Tam 00032
+"Remember to use the elementals' strength against them!"
+%E
+%Cp Tam 00033
+"Do not lose faith, %p.  If you do so, %n will grow stronger."
+%E
+%Cp Tam 00034
+"Wear %o.  They will assist you in your efforts."
+%E
+%Cc Tam 00035
+You remember the descriptions of %i, given
+to you by the %l.  It is ahead that you will find
+%n's trail.
+%E [You have reached %i.  %nC lurks further ahead.]
+%Cp Tam 00036
+Again, you stand before %i.
+%E
+%Cc Tam 00040
+The stench of brimstone is all about you, and the elementals close in
+from all sides!
+
+Ahead, there is a small clearing amidst the bubbling pits of lava...
+%E [You are surrounded by brimstone, lava, and elementals.]
+%Cp Tam 00041
+Again, you have invaded %ns domain.
+%E
+%Cc Tam 00050
+"Ah, so %l has sent another %g to retrieve
+%o.
+
+"No, I see you are no %g.  Perhaps I shall have some fun today
+after all.  Prepare to die, %r!  You shall never regain
+%o."
+%E [You are no %g.  You shall never regain %o.]
+%Cp Tam 00051
+"So, %r.  Again you challenge me."
+%E
+%Cp Tam 00052
+"Die now, %r.  %d has no power here to aid you."
+%E
+%Cp Tam 00053
+"You shall die, %r, and I will have %o back."
+%E
+%Cp Tam 00060
+"Submit to my will, %c, and I shall spare you."
+%E
+%Cp Tam 00061
+"Your puny powers are no match for me, %c."
+%E
+%Cp Tam 00062
+"I shall have you turned into a zombie for my pleasure!"
+%E
+%Cp Tam 00063
+"Despair now, %r.  %d cannot help you."
+%E
+%Cp Tam 00064
+"I shall feast upon your soul for many days, %c."
+%E
+%Cp Tam 00065
+"Your death will be slow and painful.  That I promise!"
+%E
+%Cp Tam 00066
+"You cannot defeat %n, you fool.  I shall kill you now."
+%E
+%Cp Tam 00067
+"Your precious %lt will be my next victim."
+%E
+%Cp Tam 00068
+"I feel your powers failing you, %r.  You shall die now."
+%E
+%Cp Tam 00069
+"With %o, nothing can stand in my way."
+%E
+%Cc Tam 00070
+As you pick up %o, you feel the essence of
+%d fill your soul.  You know now why %n stole %oi from
+%H, for with %oi, %ca of %d could
+easily defeat his plans.
+
+You sense a message from %d.  Though not verbal, you
+get the impression that you must return to %l as soon
+as possible.
+%E [You feel the essence of %d and realize that you should take %o to %l.]
+%Cc Tam 00080
+%nC gasps:
+
+    "You have only defeated this mortal body.  Know this: my spirit
+    is strong.  I shall return and reclaim what is mine!"
+
+With that, %n expires.
+%E [As %n dies, %nh threatens to return.]
+%Cc Tam 00081
+"You have returned, %p.  And with %o, I see.
+Congratulations.
+
+"I have been in meditation, and have received direction from
+a minion of %d.  %d commands that you retain
+%o.  With %oi, you must recover the Amulet
+of Yendor.
+
+"Go forth, and let %d guide your steps."
+%E [Keep %o.  %oH will help you recover the Amulet of Yendor.]
+%Cc Tam 00082
+%lC studies %o for a moment,
+then returns his gaze to you.
+
+"%oC must remain with you.  Use %oi
+as you resume your search for the Amulet.
+%Z await your return through the magic portal
+that brought you here."
+%E [Keep %o and return to %Z to search for the Amulet.]
+%Cp Tam 00090
+"Welcome back, %p.  How is your quest for the Amulet going?"
+%E
+%Cc Tam 00091
+"You have prevailed, %p!  %d is surely with you.  Now,
+you must take the Amulet, and sacrifice it on %ds altar on
+the Astral Plane.  I suspect that I shall never see you again in this
+life, but I hope to at %ds feet."
+%E [Take the Amulet to the Astral Plane and deliver it to %d.]
+#
 #	Cave(wo)man
 #
 %Cc Cav 00001
@@ -1575,42 +1816,40 @@ life, but I hope to at %ds feet."
 #	Pirate
 #
 %Cc Pir 00001
-You materialize at the base of a snowy hill.  Atop the hill sits
-a place you know well, %H.  You immediately realize
-that something here is very wrong!
-
-In places, the snow and ice have been melted into steaming pools of
-water.  Fumaroles and pools of bubbling lava surround the hill.
-The stench of sulphur is carried through the air, and you %x creatures
-that should not be able to live in this environment moving towards you.
-%E [You arrive below %H.  Something is wrong; there is lava present.]
+Ye breathe deeply of the sweet bouquet that is Tortuga. 
+...It'll linger.
+Rather than the chaotic din ye recall, a eerie silence greets yer 
+lugs. In the distance, ye hear soldiers on patrol. Seems yer pirate
+brethren be in need of yer assistance!
+%E [You arrive at %H.  You hear the sound of battle happening in the distance.]
 %Cp Pir 00002
-Once again, you are near the abode of %l.
+Once again, you breathe the bouquet that is %l.
 %E
 %Cp Pir 00003
-Again you materialize near %ls abode.  You have a nagging feeling
-that this may be the last time you come here.
+Ye are back on %ls
+Ye fear that soon the brethren of the coast will have to abandon 
+%ls.
 %E
 %Cp Pir 00005
-"Hail, and well met, brave %c."
+"Ahoy Maty, and well met, brave %c."
 %E
 %Cp Pir 00006
-"May %d guide your steps, %p."
+"May %d guide ye, %p."
 %E
 %Cp Pir 00007
-"%lC weakens.  Without %o, her foresight is dim."
+"%lC weakens.  Without %o, his foresight is dim."
 %E
 %Cp Pir 00008
-"You must hurry, %p, else Ragnarok may well come."
+"You must hurry, %p, else Blackbeard's Ghost may return."
 %E
 %Cp Pir 00009
 "I would deal with this foul %n myself, but %d forbids it."
 %E
 %Cp Pir 00010
-"Hail, and well met, brave %c."
+"Ahoy, and well met, brave %c."
 %E
 %Cp Pir 00011
-"May %d guide your steps, %p."
+"May %d be with ye, %p."
 %E
 %Cp Pir 00012
 "%lC told us you had succeeded!"
@@ -1619,197 +1858,184 @@ that this may be the last time you come here.
 "You recovered %o just in time, %p."
 %E
 %Cp Pir 00014
-"Hail %d, for delivering %o back to us."
+Be there comely lasses in the Dungeons o' Doom?
 %E
 %Cc Pir 00015
-"Ah, %p, my %S.  You have returned to %H
-at last.  We are in dire need of your aid, but I must determine if you
-are yet ready for such an undertaking.
-
-"Let me read your fate..."
-%E [We need your aid.  Are you ready?]
+"So, %p. Ye have returned to yer brethren. We 'ave need of a canny 
+<daughter/son> of the coast to show these Yendorans to the plank.
+"Let me be see'n if you BE that <daughter/son>."
+%E
 %Cp Pir 00016
-"Let me read the future for you now, %p, perhaps you have managed to
-change it enough..."
+"Ye try me patience, %p.
+I hope that this time ye be ready."
 %E
 %Cp Pir 00017
-"Again, I shall read your fate, my %S.  Let us both hope that you have
-made changes to become ready for this task..."
+"I hope for yer sake ye are prepared at last."
 %E
 %Cc Pir 00018
-"No, %p.  Your fate is sealed.  I must cast about for another
-champion.  Begone from my presence, and never return.  Know this, that
-you shall never succeed in this life, and Valhalla is denied to you."
-%E ["Begone from my presence and never return."]
+"Me mercy is at an end, %p. Leave Tortuga and never return."
+%E
 %Cc Pir 00019
-"I see you and %n fighting, %p.  But you are not prepared and
-shall die at %ns hand if you proceed.  No.  This will not do.
-Go back out into the world, and grow more experienced at the ways of war.
-Only when you have returned %Ra will you be able to defeat %n."
+"Ye be still too weak.  Return a proven Second Mate. Perhaps then
+ye will be ready."
 %E [Come back when you are %Ra.]
 %Cc Pir 00020
-"NO!  This is terrible.  I see you becoming an ally of %n, and
-leading his armies in the final great battles.  This must not come to
-pass!  You have strayed from the %a path.  You must purge yourself,
-and return here only when you have regained a state of purity."
+"Ye must follow %d through %a waters to reach Shipwreck Island.
+"As ye be now ye would never make it. Do not return to Tortuga
+until ye be wise in the ways o' %d."
 %E [You have strayed from the %a path.  Return after you purify yourself.]
 %Cc Pir 00021
-"It is not clear, %p, for my sight is limited without our relic.
-But it is now likely that you can defeat %n, and recover
-%o.
-
-"A short time ago, %n and his minions attacked this place.  They
-opened the huge volcanic vents you %x about the hill, and attacked.  I knew
-that this was to come to pass, and had asked %d for a group of %gP
-to help defend this place.  The few you %x here are the mightiest of
-Valhalla's own, and are all that are left of one hundred %d sent.
-
-"Despite the great and glorious battle we fought, %n managed at
-last to steal %o.  This has upset the balance of the universe,
-and unless %oh is returned into my care, %n may start Ragnarok.
-
-"You must find the entrance to %i.  Travel downward
-from there and you will find %ns lair.  Defeat him and
-return %o to me."
+"I always knew ye had greatness in ye, %p. As a pirate brother, perhaps ye may
+succeed where I once failed.
+"In my youth, I sailed with the immortal Dread Pirate, Roberts. In our
+adventures, we came to oppose Blackbeard, then mightiest of the servants 
+of the Devil, in his quest for the Treasury of Proteus.
+"Our final duel took place at the center of Shipwreck Island. Roberts, 
+himself a mighty follower of %d, bested Blackbeard 
+at swordplay, sending him tumbling into the caldera. But Blackbeard 
+was able to place a mighty curse on the Treasury of Proteus, and I was 
+unable to stop it plunging into the caldera to join him.
+"Now these Yendorans have come to claim what I lost, and in my age
+I be unable to stop them. So it falls to ye, %p. Drive these
+soldiers from Tortuga, then sail to Shipwreck Island, destroy Blackbeard's Ghost 
+once and fer all, and claim the Treasury of Proteus, in yer own name!"
 %E [Find %i; defeat %n; return with %o.]
 %Cp Pir 00025
-"Go with the blessings of %d."
+"Do not be shaken by the fearsome form of Blackbeard's Ghost."
 %E
 %Cp Pir 00026
-"Call upon %d when you are in need."
+"To enter Shipwreck Island you must find a hidden fissure in the rocks."
 %E
 %Cp Pir 00027
-"Use %o if you can.  It will protect you."
+"Captain Ketch sailed to Shipwreck Island, but the ship was lost on the
+rocks an' Ketch doesn't know the way into the caves."
 %E
 %Cp Pir 00028
-"Magical cold is very effective against %n."
+"If ye do not destroy Blackbeard's Ghost, he will follow you back here!"
 %E
 %Cp Pir 00029
-"To face %n, you will need to be immune to fire."
+"Oh, an' Captain Ketch owes me for a new house!"
 %E
 %Cp Pir 00030
-"May %d strengthen your sword-arm."
+"It be pitch black in Shipwreck Island!"
 %E
 %Cp Pir 00031
-"Trust in %d.  He will not desert you."
+"Sharks swim in the waters around Shipwreck Island."
 %E
 %Cp Pir 00032
-"It becomes more likely that Ragnarok will come with every passing moment.
+"It becomes more likely that Blackbeard's return will come with every passing moment.
 You must hurry, %p."
 %E
 %Cp Pir 00033
-"If %n can master %o, he will be powerful enough to
-face %d far earlier than is fated.  This must not be!"
+"Trust %d in yer hour of need."
 %E
 %Cp Pir 00034
-"Remember your training, %p.  You can succeed."
+"Only the <alignment> can reach Shipwreck Island."
 %E
 %Cc Pir 00035
-The ice and snow gives way to a valley floor.  You %x ahead of you
-a huge round hill surrounded by pools of lava.  This then is the entrance
-to %i.  It looks like you're not going to get in without
-a fight though.
+Ye have reached the treacherous waters around Shipwreck Island at last
+The ghostly minions of Blackbeard's Ghost are everywhere around you.
 %E [This is the entrance to %i.]
 %Cp Pir 00036
-Once again, you stand before the entrance to %i.
+Ye know that this time you must find and destroy Blackbeard's Ghost.
 %E
 %Cc Pir 00040
-Through clouds of sulphurous gasses, you %x a rock palisade
-surrounded with a moat of bubbling lava.  You remember the description
-from something that %l said.  This is the lair of %n.
+Ye know that this time you must find and destroy Blackbeard's Ghost.
 %E [This is the lair of %n.]
 %Cp Pir 00041
-Once again, you stand in sight of %ns lair.
+Ye know that soon ye shall claim the %o for yer own.
 %E
 %Cc Pir 00050
-"So!  %lC has finally sent %ca to challenge me!
-
-"I thought that mastering %o would enable me to challenge
-%d, but it has shown me that first I must kill you!  So come, little
-%s.  Once I defeat you, I can at last begin the final battle with %d."
+"So, %p Mayor Cummerbund thinks that ye can claim the Treasury of Proteus,
+when even he could not?!
+"He must be senile to send a %r to destroy me, when even in his prime
+he failed at the same task! No, it is your soul that shall go to %d."
 %E ["%oC has shown me that I must kill you."]
 %Cp Pir 00051
-"Again you challenge me, %r.  Good.  I will kill you now."
+"I have been toying with ye, %p. This time I will kill ye."
 %E
 %Cp Pir 00052
-"Have you not learned yet?  You cannot defeat %n!"
+"Flee now, %p. A Pirate cannot destroy Blackbeard's Ghost.
+If ye do not flee, I will inflict so much suffering on ye that
+Mayor Cummerbund will feel guilty for ever having sent his %s to me!"
 %E
 %Cp Pir 00053
-"I will kill you, %c, and wrest %o from your mangled hands."
+"Return the Treasury of Proteus to me, or I shall visit torments on ye even
+Judas knows naught of.
 %E
 %Cp Pir 00060
-"I am your death, %c."
+"I defeated death, even Mayor Cummerbund couldn't destroy me at his best.
+What hope have ye, %p."
 %E
 %Cp Pir 00061
-"You cannot prevail, %r.  I have foreseen your every move."
+"I am the mightiest follower of the Devil the world 
+has ever known! Your weak devotion to %d
+will not save ye."
 %E
 %Cp Pir 00062
-"With you out of the way, Valhalla will be mine for the taking."
+"Beg for mercy now, and I will only kill ye."
 %E
 %Cp Pir 00063
-"I killed scores of %ds best when I took %o.
-Do you really think that one %c can stand against me?"
+"Abandon your %a ways! Slink off and never face me again!"
 %E
 %Cp Pir 00064
-"Who bears the souls of %cP to Valhalla, %r?"
+"Vengeance will be mine, %p. I will make Mayor Cummerbund pay,
+for what he did to me!"
 %E
 %Cp Pir 00065
-"No, %d cannot help you here."
+"The Brethren of the Coast are finished. Now I rule the seas!"
 %E
 %Cp Pir 00066
-"Some instrument of %d you are, %p.  You are a weakling!"
+"With the Treasury of Proteus I control all the treasures of the sea!"
+"I will never die!"
 %E
 %Cp Pir 00067
-"Never have I seen %ca so clumsy in battle."
+"Are ye truly the greatest pirate Tortuga has left?
+It will share your fate!"
 %E
 %Cp Pir 00068
-"You die now, little %s."
+"Die in vain, %p! I will send Mayor Cummerbund to join ye!"
 %E
 %Cp Pir 00069
-"Your body I destroy now, your soul when my hordes overrun Valhalla!"
+"Your body I destroy now, your soul when my hordes overrun Tortuga!"
 %E
 %Cc Pir 00070
-As you pick up %o, your mind is suddenly filled with images,
-and you perceive all of the possibilities of each potential choice you
-could make.  As you begin to control and channel your thoughts, you
-realize that you must return %o to %l immediately.
+As ye pick up the Treasury of Proteus, ye feel a great
+weight has been lifted from your shoulders.  Your only thoughts are
+to quickly return to Tortuga and find Mayor Cummerbund.
 %E [You must return %o to %l.]
 %Cc Pir 00080
-A look of surprise and horror appears on %ns face.
-
-    "No!!!  %o has lied to me!  I have been misled!"
-
-Suddenly, %n grasps his head and screams in agony, then dies.
+A great crack opens below Blackbeard's Ghost, and a huge, flaming hand 
+reaches out to seize his wispy form. He curses ye:
+ NO! I won't die here, %p! It is ye who's [sic] soul will feed 
+ the Devil! I am king of all the oceans, I cannot be killed!
+ I will haunt ye until %d betrays ye!
 %E [%nC dies.]
 %Cc Pir 00081
-As you approach, %l rises and touches %o.
-
-"You may take %o with you, %p.  I have removed from
-it the power to foretell the future, for that power no mortal should
-have.  Its other abilities, however, you have at your disposal.
-
-"You must now begin in %ds name to search for the Amulet of Yendor.
-May your steps be guided by %d, my %S."
+As Mayor Cummerbund senses the Treasury of Proteus, the lines on his face harden
+into what may be his version of a smile.
+ Ye have claimed the Treasury of Proteus.  Ye hold in
+ yer hands all the treasures of the sea.  Ye may well be
+ the next Dread Pirate, greater even than Roberts. My 
+ %s, ye should seek a treasure greater than any pirate
+ has ever sought before: the Amulet of Yendor.
+ The great Wizard, who lives in Yendor, knows that ye 
+ can claim this prize. It was he who sent the soldiers here.
+ Return to the Dungeons of Doom, and claim yer destiny!
 %E [Take %o.  Search for the Amulet.]
 # assumes Orb of Fate (glass object)
 %Cc Pir 00082
-"Careful, %p!  %oC might break, and that would be
-a tragic loss.  You are its keeper now, and the time has come to
-resume your search for the Amulet.  %Z await your
-return through the magic portal that brought you here."
+"The Treasury of Proteus is yers.  Yer destiny awaits through the portal that 
+brought ye here."
 %E [You are %os keeper now.  Return through the portal and find the Amulet.]
 %Cp Pir 00090
-"Greetings, %p.  I have not been able to pay as much attention to
-your search for the Amulet as I have wished.  How do you fare?"
+"Tell me of yer adventures in yer quest for the Amulet of Yendor."
 %E
 %Cc Pir 00091
-"Excellent, %p.  I see you have recovered the Amulet!
-
-"You must take the Amulet to the Great Temple of %d, on the Astral
-Plane.  There you must offer the Amulet to %d.
-
-"Go now, my %S.  I cannot tell you your fate, as the power of the
-Amulet interferes with mine.  I hope for your success."
+"Ye have claimed the Amulet of Yendor! Truly ye were destined to be
+the greatest %s of the Breathren of the Coast!
+"Now ye must travel to the astral sea, and offer the Amulet on the
+High Altar of %d!"
 %E [Take the Amulet to %ds temple on the Astral Plane and offer it.]
 #
 #	Priest

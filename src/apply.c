@@ -28,6 +28,7 @@ STATIC_DCL void FDECL(use_trap, (struct obj *));
 STATIC_DCL void FDECL(use_stone, (struct obj *));
 STATIC_PTR int NDECL(set_trap); /* occupation callback */
 STATIC_DCL int FDECL(use_whip, (struct obj *));
+STATIC_DCL int FDECL(use_whip_sword, (struct obj *));
 STATIC_PTR void FDECL(display_polearm_positions, (int));
 STATIC_DCL int FDECL(use_pole, (struct obj *));
 STATIC_DCL int FDECL(use_cream_pie, (struct obj *));
@@ -41,7 +42,14 @@ STATIC_PTR boolean FDECL(check_jump, (genericptr_t, int, int));
 STATIC_DCL boolean FDECL(is_valid_jump_pos, (int, int, int, BOOLEAN_P));
 STATIC_DCL boolean FDECL(get_valid_jump_position, (int, int));
 STATIC_DCL boolean FDECL(get_valid_polearm_position, (int, int));
+STATIC_DCL boolean FDECL(get_valid_whip_sword_position, (int, int) );
 STATIC_DCL boolean FDECL(find_poleable_mon, (coord *, int, int));
+
+static const char
+    not_enough_room[] = "There's not enough room here to use that.",
+    where_to_hit[] = "Where do you want to hit?",
+    cant_see_spot[] = "won't hit anything if you can't see that spot.",
+    cant_reach[] = "can't reach that spot from here.";
 
 #ifdef AMIGA
 void FDECL(amii_speaker, (struct obj *, char *, int));
@@ -2670,7 +2678,7 @@ struct obj *obj;
 
     /* fake some proficiency checks */
     proficient = 0;
-    if (Role_if(PM_ARCHEOLOGIST))
+    if (Role_if(PM_ARCHEOLOGIST) || Role_if(PM_BEAST_TAMER))
         ++proficient;
     if (ACURR(A_DEX) < 6)
         proficient--;
@@ -2898,11 +2906,198 @@ struct obj *obj;
     return 1;
 }
 
-static const char
-    not_enough_room[] = "There's not enough room here to use that.",
-    where_to_hit[] = "Where do you want to hit?",
-    cant_see_spot[] = "won't hit anything if you can't see that spot.",
-    cant_reach[] = "can't reach that spot from here.";
+/* find pos of monster in range, if only one monster */
+STATIC_OVL boolean
+find_whipable_mon(pos, min_range, max_range)
+coord *pos;
+int min_range, max_range;
+{
+    struct monst *mtmp;
+    coord mpos;
+    boolean impaired;
+    int x, y, lo_x, hi_x, lo_y, hi_y, rt, glyph;
+
+    if (Blind)
+        return FALSE; /* must be able to see target location */
+    impaired = (Confusion || Stunned || Hallucination);
+    mpos.x = mpos.y = 0; /* no candidate location yet */
+    rt = isqrt(max_range);
+    lo_x = max(u.ux - rt, 1), hi_x = min(u.ux + rt, COLNO - 1);
+    lo_y = max(u.uy - rt, 0), hi_y = min(u.uy + rt, ROWNO - 1);
+    for (x = lo_x; x <= hi_x; ++x) {
+        for (y = lo_y; y <= hi_y; ++y) {
+            if (distu(x, y) < min_range || distu(x, y) > max_range
+                || !isok(x, y) || !cansee(x, y))
+                continue;
+            glyph = glyph_at(x, y);
+            if (!impaired
+                && glyph_is_monster(glyph)
+                && (mtmp = m_at(x, y)) != 0
+                && (mtmp->mtame || (mtmp->mpeaceful && flags.confirm)))
+                continue;
+            if (glyph_is_monster(glyph)
+                || glyph_is_warning(glyph)
+                || glyph_is_invisible(glyph)
+                || (glyph_is_statue(glyph) && impaired)) {
+                if (mpos.x)
+                    return FALSE; /* more than one candidate location */
+                mpos.x = x, mpos.y = y;
+            }
+        }
+    }
+    if (!mpos.x)
+        return FALSE; /* no candidate location */
+    *pos = mpos;
+    return TRUE;
+}
+
+static int whip_sword_range_min = -1;
+static int whip_sword_range_max = -1;
+
+STATIC_OVL boolean get_valid_whip_sword_position(x, y) int x, y;
+{
+    return (isok(x, y) && ACCESSIBLE(levl[x][y].typ)
+            && distu(x, y) >= whip_sword_range_min
+            && distu(x, y) <= whip_sword_range_max);
+}
+
+STATIC_OVL void display_whip_sword_positions(state) int state;
+{
+    if (state == 0) {
+        tmp_at(DISP_BEAM, cmap_to_glyph(S_goodpos));
+    } else if (state == 1) {
+        int x, y, dx, dy;
+
+        for (dx = -4; dx <= 4; dx++)
+            for (dy = -4; dy <= 4; dy++) {
+                x = dx + (int) u.ux;
+                y = dy + (int) u.uy;
+                if (get_valid_whip_sword_position(x, y)) {
+                    tmp_at(x, y);
+                }
+            }
+    } else {
+        tmp_at(DISP_END, 0);
+    }
+}
+
+/* Distance attacks by whip sword */
+STATIC_OVL int
+use_whip_sword(obj)
+struct obj *obj;
+{
+    int res = 0, typ, max_range, min_range, glyph;
+    coord cc;
+    struct monst *mtmp;
+    struct monst *hitm = context.whip_sword.hitmon;
+
+    /* Are you allowed to use the whip sword? */
+    if (u.uswallow) {
+        pline(not_enough_room);
+        return 0;
+    }
+    if (obj != uwep) {
+        if (!wield_tool(obj, "swing"))
+            return 0;
+        else
+            res = 1;
+    }
+    /* assert(obj == uwep); */
+
+    /*
+     * Calculate allowable range (pole's reach is always 2 steps):
+     *  unskilled and basic: orthogonal direction, 4..4;
+     *  skilled: as basic, plus knight's jump position, 4..5;
+     *  expert: as skilled, plus diagonal, 4..8.
+     *      ...9...
+     *      .85458.
+     *      .52125.
+     *      9410149
+     *      .52125.
+     *      .85458.
+     *      ...9...
+     *  (Note: no roles in nethack can become expert or better
+     *  for polearm skill; Yeoman in slash'em can become expert.)
+     */
+    min_range = 4;
+    typ = uwep_skill_type();
+    if (typ == P_NONE || P_SKILL(typ) <= P_BASIC)
+        max_range = 4;
+    else if (P_SKILL(typ) == P_SKILLED)
+        max_range = 5;
+    /*else if (P_SKILL(typ) >= P_EXPERT)
+        max_range = 9;*/
+
+    whip_sword_range_min = min_range;
+    whip_sword_range_max = max_range;
+
+    /* Prompt for a location */
+    pline(where_to_hit);
+    cc.x = u.ux;
+    cc.y = u.uy;
+    if (!find_whipable_mon(&cc, min_range, max_range) && hitm
+        && !DEADMONSTER(hitm) && cansee(hitm->mx, hitm->my)
+        && distu(hitm->mx, hitm->my) <= max_range
+        && distu(hitm->mx, hitm->my) >= min_range) {
+        cc.x = hitm->mx;
+        cc.y = hitm->my;
+    }
+    getpos_sethilite(display_whip_sword_positions, get_valid_whip_sword_position);
+    if (getpos(&cc, TRUE, "the spot to hit") < 0)
+        return res; /* ESC; uses turn iff polearm became wielded */
+
+    glyph = glyph_at(cc.x, cc.y);
+    if (distu(cc.x, cc.y) > max_range) {
+        pline("Too far!");
+        return res;
+    } else if (distu(cc.x, cc.y) < min_range) {
+        pline("Too close!");
+        return res;
+    } else if (!cansee(cc.x, cc.y) && !glyph_is_monster(glyph)
+               && !glyph_is_invisible(glyph) && !glyph_is_statue(glyph)) {
+        You(cant_see_spot);
+        return res;
+    } else if (!couldsee(cc.x, cc.y)) { /* Eyes of the Overworld */
+        You(cant_reach);
+        return res;
+    }
+
+    context.whip_sword.hitmon = (struct monst *) 0;
+    /* Attack the monster there */
+    bhitpos = cc;
+    if ((mtmp = m_at(bhitpos.x, bhitpos.y)) != (struct monst *) 0) {
+        if (attack_checks(mtmp, uwep))
+            return res;
+        if (overexertion())
+            return 1; /* burn nutrition; maybe pass out */
+        context.whip_sword.hitmon = mtmp;
+        check_caitiff(mtmp);
+        notonhead = (bhitpos.x != mtmp->mx || bhitpos.y != mtmp->my);
+        (void) thitmonst(mtmp, uwep);
+    } else if (glyph_is_statue(glyph) /* might be hallucinatory */
+               && sobj_at(STATUE, bhitpos.x, bhitpos.y)) {
+        struct trap *t = t_at(bhitpos.x, bhitpos.y);
+
+        if (t && t->ttyp == STATUE_TRAP
+            && activate_statue_trap(t, t->tx, t->ty, FALSE)) {
+            ; /* feedback has been give by animate_statue() */
+        } else {
+            /* Since statues look like monsters now, we say something
+               different from "you miss" or "there's nobody there".
+               Note:  we only do this when a statue is displayed here,
+               because the player is probably attempting to attack it;
+               other statues obscured by anything are just ignored. */
+            pline("Thwack!  Your whip bounces harmlessly off the statue.");
+            wake_nearto(bhitpos.x, bhitpos.y, 25);
+        }
+    } else {
+        /* no monster here and no statue seen or remembered here */
+        (void) unmap_invisible(bhitpos.x, bhitpos.y);
+        You("miss; there is no one there to hit.");
+    }
+    u_wipe_engr(2); /* same as for melee or throwing */
+    return 1;
+}
 
 /* find pos of monster in range, if only one monster */
 STATIC_OVL boolean
@@ -3027,8 +3222,8 @@ struct obj *obj;
         max_range = 4;
     else if (P_SKILL(typ) == P_SKILLED)
         max_range = 5;
-    else
-        max_range = 8; /* (P_SKILL(typ) >= P_EXPERT) */
+    else if (P_SKILL(typ) >= P_EXPERT)
+        max_range = 9;
 
     polearm_range_min = min_range;
     polearm_range_max = max_range;
@@ -3535,7 +3730,8 @@ char class_list[];
 {
     register struct obj *otmp;
     int otyp;
-    boolean knowoil, knowtouchstone, addpotions, addstones, addfood;
+    boolean knowoil, knowtouchstone, addpotions, addstones, addfood,
+        addwhipsword;
 
     knowoil = objects[POT_OIL].oc_name_known;
     knowtouchstone = objects[TOUCHSTONE].oc_name_known;
@@ -3554,6 +3750,8 @@ char class_list[];
             addstones = TRUE;
         if (otyp == CREAM_PIE || otyp == EUCALYPTUS_LEAF)
             addfood = TRUE;
+      /*  if (otyp == WHIP_SWORD || otyp == SILVER_WHIP_SWORD)
+            addwhipsword = TRUE;*/
     }
 
     class_list[0] = '\0';
@@ -3612,6 +3810,12 @@ doapply()
         break;
     case BULLWHIP:
         res = use_whip(obj);
+        break;
+    case WHIP_SWORD:
+        res = use_whip_sword(obj);
+        break;
+    case SILVER_WHIP_SWORD:
+        res = use_whip_sword(obj);
         break;
     case GRAPPLING_HOOK:
         res = use_grapple(obj);

@@ -9,123 +9,130 @@
 #	and receive your quest assignment.
 #
 MAZE: "Pir-strt",' '
-FLAGS: noteleport,hardfloor,icedpools
-INIT_MAP:solidfill,'I'
-
-$pools = selection: random & random & random & random & random &
-	   random & random & random & random & random & random &
-	   random & random &
-	   grow(west, random) &
-	   grow(north, random) &
-	   grow(random & random)
-# This works because the random coordinates in $pools are evaluated once,
-# when the variable is initialized.
-TERRAIN:grow($pools), 'P'
-TERRAIN:$pools, 'L'
+FLAGS: noteleport,hardfloor
 
 GEOMETRY:center,center
 MAP
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxx..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...xxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxx..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx..{..xxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxx..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.....xxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxx..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.xxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxx..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.xxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxx..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx..xxxxxxxxxxxxxxxxxxx
-xxxxxxxx.....xxxxxxxxxxxxx|----------------|xxxxxxxxxxx.xxxxxxxxxxxxxxxxxxxx
-xxxxxxx..xxx...xxxxxxxxxxx|................|xxxxxxxxxx..xxxxxxxxxxxxxxxxxxxx
-xxxxxx..xxxxxx......xxxxx.|................|.xxxxxxxxx.xxxxxxxxxxxxxxxxxxxxx
-xxxxx..xxxxxxxxxxxx.......+................+...xxxxxxx.xxxxxxxxxxxxxxxxxxxxx
-xxxx..xxxxxxxxx.....xxxxx.|................|.x...xxxxx.xxxxxxxxxxxxxxxxxxxxx
-xxx..xxxxxxxxx..xxxxxxxxxx|................|xxxx.......xxxxxxxxxxxxxxxxxxxxx
-xxxx..xxxxxxx..xxxxxxxxxxx|----------------|xxxxxxxxxx...xxxxxxxxxxxxxxxxxxx
-xxxxxx..xxxx..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...xxxxxxxxxxxxxxxxx
-xxxxxxx......xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...xxxxxxxxxxxxxxx
-xxxxxxxxx...xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...x......xxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.........xxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.......xxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}......................................}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}....---.----.----.----.----.----.--.-.--.-}}}}#-#-}}}}}}}-#-#}}}
+}}}}}}}}}}}.......|.|##|.|##|.|##|.|##|.|##|.|..|.|....}}}|..#-#-#-#-#..|}}}
+}}}}}}}}}.........|.|##|.|##|.|##|.|##|.|##|.|..|....|...}#.............#}.}
+}}}}}}}}.......-..-.--+-.--+-.--+-.--+-.--+-.-.--.-..-...}-|.#########.#-}.}
+}}}}}}}....................................................|.#########.|}}.}
+}}}}}}}.-..-..-----....                              ......|.##-#+#-##.#}}.}
+}}}}}}...............    .......................  ..   ....|.###...|---|}}.}
+}}}}}......|..|.....    .........................H...   ...|.+#|...+...+....
+}}}}}}..-.----....|..  H .......................  ..   ....|.###...|---|}}.}
+}}}}}}}.........---....                          -----.....|.##-#+#-##.#}}.}
+}}}}}}}........|.....-----..-----..-----..-----..|.|.|.....|.#########.|}}.}
+}}}}}}}}...|...|.....|...|..|...|..|...|..|...|..|.|.|...}--.#########.#-}.}
+}}}}}}}}}..-----.....|...|..|...|..|...|..|...|..|+-+|...}#.............#}.}
+}}}}}}}}}}}..........|...|..|...|..|...|..|...|..S...|..}}|..#-#-#-#-#..|}}}
+}}}}}}}}}}}}.........-+---..-+---..-+---..-+---..-----.}}}#-#-}}}}}}}-#-#}}}
+}}}}}}}}}}}}}}.......................................}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 ENDMAP
 # Dungeon Description
 REGION:(00,00,75,19),lit,"ordinary"
 REGION:(27,08,42,12),lit,"ordinary"
 # Portal arrival point
-BRANCH:(66,17,66,17),(0,0,0,0)
+BRANCH:(21,04,21,04),(0,0,0,0)
 # Stairs
-STAIR:(18,01),down
-FOUNTAIN:(53,02)
+STAIR:(74,10),down
 # Doors
-DOOR:locked,(26,10)
-DOOR:locked,(43,10)
-# Norn
-MONSTER:('@',"Norn"),(35,10)
-# The treasure of the Norn
-OBJECT:('(',"chest"),(36,10)
-# valkyrie guards for the audience chamber
-MONSTER:('@',"warrior"),(27,08)
-MONSTER:('@',"warrior"),(27,09)
-MONSTER:('@',"warrior"),(27,11)
-MONSTER:('@',"warrior"),(27,12)
-MONSTER:('@',"warrior"),(42,08)
-MONSTER:('@',"warrior"),(42,09)
-MONSTER:('@',"warrior"),(42,11)
-MONSTER:('@',"warrior"),(42,12)
-# Non diggable walls
-NON_DIGGABLE:(26,07,43,13)
-# Random traps
-TRAP:"fire",random
-TRAP:"fire",random
-TRAP:"fire",random
-TRAP:"fire",random
-TRAP:"fire",random
-TRAP:"fire",random
+DOOR:closed,(22,06)
+DOOR:closed,(27,06)
+DOOR:closed,(32,06)
+DOOR:closed,(37,06)
+DOOR:closed,(42,06)
+DOOR:closed,(22,17)
+DOOR:closed,(29,17)
+DOOR:closed,(36,17)
+DOOR:closed,(43,17)
+DOOR:closed,(50,15)
+DOOR:closed,(52,15)
+DOOR:closed,(61,10)
+DOOR:closed,(65,12)
+DOOR:closed,(67,10)
+DOOR:closed,(71,10)
+
+REGION:(22,14,24,16),lit,"shop"
+REGION:(29,14,31,16),lit,"shop"
+REGION:(36,14,38,16),lit,"shop"
+REGION:(43,14,45,16),lit,"shop"
+# Mayor Cummerbund
+MONSTER:('@',"Mayor Cummerbund"),(51,10)
+# The treasure of the Mayor Cummerbund
+OBJECT:('(',"chest"),(52,10)
+# Pirate guards for the audience chamber
+MONSTER:('@',"pirate bretheren"),(13,16)
+MONSTER:('@',"pirate bretheren"),(14,16)
+MONSTER:('@',"pirate bretheren"),(15,16)
+MONSTER:('@',"pirate bretheren"),(13,17)
+MONSTER:('@',"pirate bretheren"),(14,17)
+MONSTER:('@',"pirate bretheren"),(15,17)
+MONSTER:('@',"pirate bretheren"),(29,10)
+MONSTER:('@',"pirate bretheren"),(34,11)
 # Monsters on siege duty.
-MONSTER: ('a',"fire ant"),(04,12)
-MONSTER: ('a',"fire ant"),(08,08)
-MONSTER: ('a',"fire ant"),(14,04)
-MONSTER: ('a',"fire ant"),(17,11)
-MONSTER: ('a',"fire ant"),(24,10)
-MONSTER: ('a',"fire ant"),(45,10)
-MONSTER: ('a',"fire ant"),(54,02)
-MONSTER: ('a',"fire ant"),(55,07)
-MONSTER: ('a',"fire ant"),(58,14)
-MONSTER: ('a',"fire ant"),(63,17)
-MONSTER: ('H',"fire giant"),(18,01),hostile
-MONSTER: ('H',"fire giant"),(10,16),hostile
+MONSTER: ('M',"human mummy"),(15,18)
+MONSTER: ('M',"human mummy"),(16,18)
+MONSTER: ('M',"human mummy"),(17,18)
+MONSTER: ('M',"human mummy"),(18,18)
+MONSTER: ('M',"human mummy"),(19,18)
+MONSTER: ('M',"human mummy"),(20,18)
+MONSTER: ('r',"sewer rat"),(25,18),hostile
+MONSTER: ('r',"sewer rat"),(26,18),hostile
+MONSTER: ('@',"soldier"),(62,07)
+MONSTER: ('@',"soldier"),(63,07)
+MONSTER: ('@',"soldier"),(66,07)
+MONSTER: ('@',"soldier"),(62,13)
+MONSTER: ('@',"soldier"),(63,13)
+MONSTER: ('@',"sergeant"),(66,13)
+MONSTER: ('&',"succubus"),(50,13)
+MONSTER: ('&',"incubus"),(52,13)
 
 #
 #	The "locate" level for the quest.
 #
-#	Here you have to find the cave of Surtur to go
-#	further towards your assigned quest.
+#	The wrecked ship in the center of the map contains the hidden passage 
+#connecting the caverns with the shore of the island
 #
 
 MAZE: "Pir-loca",' '
-FLAGS: hardfloor,icedpools
-INIT_MAP: mines, '.', 'I', true, true, lit, false
+FLAGS: noteleport,hardfloor
+
 GEOMETRY:center,center
 MAP
-PPPPxxxx                      xxxxPPPPPx
-PLPxxx                          xPPLLLPP
-PPP    .......................    PPPLLP
-xx   ............................   PPPP
-x  ...............................  xxxx
-  .................................   xx
-....................................   x
-  ...................................   
-x  ..................................  x
-xx   ..............................   PP
-xPPP  ..........................     PLP
-xPLLP                             xxPLLP
-xPPPPxx                         xxxxPPPP
+}}}}}}}}}......         }}}}}}}}}}}}}}}}}}}}}}  }} }}}}}}}}}        }}}}}}}}
+}}}  }..........}}   }}}}}}}}}}}}}}}}}}}}}}}   }   }}}}}}        }}}}       
+}}}} .}}}......}}}}}}}}}}}}}.}}}}}.   }}}}}}}}  }}}}} }}}}}  } }}}   #######
+}}}}.}..}}...}}   }}}}}}}}}}}}}}}.     }}   }}}}}}}} }}}   } }}       ##### 
+}}}. .}}  }.}}}}}   }}}}}}}}}}}}}}. }}}}     }}}}}   }} }}      ########### 
+}}.}.}....  }..}}}}}} .}}}}}}}}}}}}}}}}}}}   }}}}}} }}  }}}}}}}}   ###  ## #
+}}}.}}.... }}}.}.}  ...-----------------++-------}}}}----}---|}     ## #### 
+}}}.}.}...}...}.}...--H|..........................}.}}.....}}--|}}   #####  
+}}}}..}}}.   }}}}}--|..............................}}}}}.......-|}}  #######
+}.}.}}..}...  }}--|......................---...........}}}..}}.}   HH#######
+.}.}..}}...}}}}-|........................| |......}}}}}}...}..  HHH  ##  ###
+}.}}}.}..} }}}}}--|......................---.....}}}}}}}}..}..}.|   ########
+}}.}.....  }}.....--|.................................}}}}.....-| ##########
+}}}.}.... }}}}.....}---|...........................}}}}...}}.-++} ##  ###  #
+}}}}..}}..} ..}}}}}}}}}--------------------------++--}}----}-|}}  ####  ####
+}}}}}.}.....  ....}}}}}}}}}}}}}}}}}}}}   }}}}}}}}}}}}}}}}}}}}}}  ######## ##
+}}}}}}.....} }  }...}}}}}}}}}}}...}}} }  }}}}}}}}}}}}}}}}}}}}}}} ###########
+}}}}}}}}...}}}}}}...}}}}}}}}}}   .}}}}   }}}}}}}}}}}}}}}}}}}}}}}  ####   ## 
+}}}  ....   .}}}  }}}}}}}}}}}   ..}}}}}}}}}}}}}}}}}}}}}}}}}}}       #### #  
+}}}}}  }..}   .}}}}}}}}}}}}}  }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}      #   ### # 
+}}}}}}}.} }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}    #####     
 ENDMAP
 # Dungeon Description
-REGION:(00,00,39,12),lit,"ordinary"
+REGION:(00,00,60,20),lit,"ordinary"
 # Stairs
-STAIR:(48,14),up
-STAIR:(20,06),down
-# Non diggable walls
-NON_DIGGABLE:(00,00,39,12)
+STAIR:(00,10),up
+STAIR:(74,16),down
 # Objects
 OBJECT:random,random
 OBJECT:random,random
@@ -142,42 +149,42 @@ OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random
-# Random traps
-TRAP:"fire",random
-TRAP:"fire",random
-TRAP:"fire",random
-TRAP:"fire",random
-TRAP:random,random
-TRAP:random,random
+OBJECT:(')',"scimitar"),random
+OBJECT:(')',"scimitar"),random
+OBJECT:(')',"scimitar"),random
+OBJECT:(')',"scimitar"),random
+OBJECT:(')',"scimitar"),random
+OBJECT:(')',"scimitar"),random
+OBJECT:(')',"scimitar"),random
+OBJECT:(')',"scimitar"),random
+OBJECT:(')',"scimitar"),random
 # Random monsters.
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:'a',random
-MONSTER:'H',random,hostile
-MONSTER:('H',"fire giant"),random,hostile
-MONSTER:('H',"fire giant"),random,hostile
-MONSTER:('H',"fire giant"),random,hostile
-MONSTER:('H',"fire giant"),random,hostile
-MONSTER:('H',"fire giant"),random,hostile
-MONSTER:('H',"fire giant"),random,hostile
-MONSTER:('H',"fire giant"),random,hostile
-MONSTER:'H',random,hostile
-
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:(' ',"ghost"),random
+MONSTER:(' ',"ghost"),random
+MONSTER:(';',"shark"),(00,01)
+MONSTER:(';',"shark"),(00,20)
+MONSTER:(';',"shark"),(46,01)
+MONSTER:(';',"shark"),(46,02)
+MONSTER:(';',"shark"),(46,19)
+MONSTER:(';',"shark"),(46,20)
+MONSTER: ('@',"soldier"),(47,08)
+MONSTER: ('@',"soldier"),(47,09)
+MONSTER: ('@',"soldier"),(47,10)
+MONSTER: ('@',"soldier"),(47,11)
+MONSTER: ('@',"soldier"),(47,12)
+MONSTER: ('@',"sergeant"),(47,13)
 #
 #	The "goal" level for the quest.
 #
@@ -187,45 +194,42 @@ MONSTER:'H',random,hostile
 #
 
 MAZE: "Pir-goal", 'L'
-FLAGS: icedpools
-INIT_MAP: mines, '.', 'L', true, true, lit, false
+FLAGS: noteleport,hardfloor
+
 GEOMETRY:center,center
 MAP
-xxxxxx.....................xxxxxxxx
-xxxxx.......LLLLL.LLLLL......xxxxxx
-xxxx......LLLLLLLLLLLLLLL......xxxx
-xxxx.....LLL|---------|LLL.....xxxx
-xxxx....LL|--.........--|LL.....xxx
-x......LL|-...LLLLLLL...-|LL.....xx
-.......LL|...LL.....LL...|LL......x
-......LL|-..LL.......LL..-|LL......
-......LL|.................|LL......
-......LL|-..LL.......LL..-|LL......
-.......LL|...LL.....LL...|LL.......
-xx.....LL|-...LLLLLLL...-|LL......x
-xxx.....LL|--.........--|LL.....xxx
-xxxx.....LLL|---------|LLL...xxxxxx
-xxxxx.....LLLLLLLLLLLLLLL...xxxxxxx
-xxxxxx......LLLLL.LLLLL.....xxxxxxx
-xxxxxxxxx..................xxxxxxxx
+                        ###                                         #  
+#                      ###                  #                       ## 
+###                   ##            .        ##                      ##
+ ###                 ##            ###       ###        #           ## 
+  ###                #           #H#H#HH       #         ##         #  
+    ##        #                 H#  #  ##       #         ###      #   
+     #       ##                 H ##H## H                  ###         
+            ##                 ## #H#H# ##                  ###        
+           ##                 .#H#H###H#H#.                 ##         
+          ###                  ## #H#H# ##                 ##          
+           ###                  H ##H## H                 ##     #     
+   #        ###         #       ##  #  #H                 #      ##    
+  #           ##         #       HH#H#H#           #              ###  
+ ##             #        ###       ###            ##               ### 
+##                        ##        .            ##                 ###
+ ##                         #                  ###                    #
+  #                                           ###                      
 ENDMAP
 # Dungeon Description
 REGION:(00,00,34,16),lit,"ordinary"
 # Stairs
-# Note:  The up stairs are *intentionally* off of the map.
+
 STAIR:(45,10),up
-# Non diggable walls
-NON_DIGGABLE:(00,00,34,16)
-# Drawbridges; northern one opens from the south (portcullis) to further
-# north (lowered span), southern one from the north to further south
-DRAWBRIDGE:(17,02),south,random
-IF [75%] {
-   DRAWBRIDGE:(17,14),north,open
-} ELSE {
-   DRAWBRIDGE:(17,14),north,random
-}
+
 # Objects
-OBJECT:('(',"crystal ball"),(17,08),blessed,5,name:"The Orb of Fate"
+OBJECT:('(',"crystal ball"),(36,07),blessed,5,name:"The Orb of Fate"
+OBJECT:('$',"gold piece"),(36,07)
+OBJECT:('$',"gold piece"),(36,07)
+OBJECT:('$',"gold piece"),(36,07)
+OBJECT:('*',"sapphire"),(36,07)
+OBJECT:('*',"sapphire"),(36,07)
+OBJECT:('*',"sapphire"),(36,07)
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random
@@ -234,44 +238,34 @@ OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random
-OBJECT:random,random
-OBJECT:random,random
-OBJECT:random,random
-OBJECT:random,random
-OBJECT:random,random
-OBJECT:random,random
-# Traps
-TRAP:"board",(13,08)
-TRAP:"board",(21,08)
-# Random traps
-TRAP:"fire",random
-TRAP:"fire",random
-TRAP:"fire",random
-TRAP:"fire",random
-TRAP:"board",random
-TRAP:random,random
-TRAP:random,random
+
 # Random monsters.
-MONSTER:('H',"Lord Surtur"),(17,08)
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:'a',random
-MONSTER:'a',random
-MONSTER:('H',"fire giant"),(10,06),hostile
-MONSTER:('H',"fire giant"),(10,07),hostile
-MONSTER:('H',"fire giant"),(10,08),hostile
-MONSTER:('H',"fire giant"),(10,09),hostile
-MONSTER:('H',"fire giant"),(10,10),hostile
-MONSTER:('H',"fire giant"),(24,06),hostile
-MONSTER:('H',"fire giant"),(24,07),hostile
-MONSTER:('H',"fire giant"),(24,08),hostile
-MONSTER:('H',"fire giant"),(24,09),hostile
-MONSTER:('H',"fire giant"),(24,10),hostile
-MONSTER:('H',"fire giant"),random,hostile
-MONSTER:('H',"fire giant"),random,hostile
-MONSTER:'H',random,hostile
+MONSTER:('@',"Blackbeard's Ghost"),(36,07)
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:('M',"human mummy"),random
+MONSTER:'Z',random
+MONSTER:'Z',random
+
+MONSTER:'M',random,hostile
 
 #
 #	The "fill" levels for the quest.
@@ -283,7 +277,7 @@ MONSTER:'H',random,hostile
 #
 
 MAZE: "Pir-fila" , 'I'
-FLAGS: icedpools
+FLAGS: noteleport,hardfloor
 INIT_MAP: mines, '.', 'I', true, true, lit, false
 NOMAP
 #
@@ -300,13 +294,13 @@ OBJECT: random, random
 OBJECT: random, random
 OBJECT: random, random
 #
-MONSTER: ('a', "fire ant"), random
-MONSTER: ('a', "fire ant"), random
-MONSTER: ('a', "fire ant"), random
-MONSTER: ('a', "fire ant"), random
-MONSTER: ('a', "fire ant"), random
-MONSTER: 'a', random
-MONSTER: ('H', "fire giant"), random, hostile
+MONSTER: ('M', "human mummy"), random
+MONSTER: ('M', "human mummy"), random
+MONSTER: ('M', "human mummy"), random
+MONSTER: ('M', "human mummy"), random
+MONSTER: ('M', "human mummy"), random
+MONSTER: 'r', random
+MONSTER: ('M', "human mummy"), random, hostile
 #
 TRAP: random, random
 TRAP: random, random
@@ -317,7 +311,7 @@ TRAP: random, random
 TRAP: random, random
 
 MAZE: "Pir-filb" , 'L'
-FLAGS: icedpools
+FLAGS: noteleport,hardfloor
 INIT_MAP: mines, '.', 'L', true, true, lit, false
 NOMAP
 #
@@ -336,18 +330,14 @@ OBJECT: random, random
 OBJECT: random, random
 OBJECT: random, random
 #
-MONSTER: ('a', "fire ant"), random
-MONSTER: ('a', "fire ant"), random
-MONSTER: ('a', "fire ant"), random
-MONSTER: 'a', random
-MONSTER: ('H', "fire giant"), random, hostile
-MONSTER: ('H', "fire giant"), random, hostile
-MONSTER: ('H', "fire giant"), random, hostile
+MONSTER: ('M', "human mummy"), random
+MONSTER: ('M', "human mummy"), random
+MONSTER: ('M', "human mummy"), random
+MONSTER: 'r', random
+MONSTER: ('M', "human mummy"), random, hostile
+MONSTER: ('M', "human mummy"), random, hostile
+MONSTER: ('M', "human mummy"), random, hostile
 #
-TRAP: "fire", random
-TRAP: "fire", random
-TRAP: "fire", random
-TRAP: "fire", random
-TRAP: "fire", random
+
 TRAP: random, random
 TRAP: random, random

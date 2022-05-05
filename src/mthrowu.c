@@ -111,7 +111,9 @@ register struct obj *obj;
 boolean ohit;
 int x, y;
 {
-    int retvalu = 1;
+    struct obj *mwep = (struct obj *) 0;
+
+	int retvalu = 1;
     int create;
     struct monst *mtmp;
     struct trap *t;
@@ -123,6 +125,20 @@ int x, y;
         create = !rn2(3);
     else
         create = 1;
+    /* D: Detonate crossbow bolts from Hellfire if they hit */
+    if (ohit && mwep && mwep->oartifact == ART_HELLFIRE && is_ammo(obj)
+        && ammo_and_launcher(obj, mwep)) {
+        if (cansee(bhitpos.x, bhitpos.y))
+            pline("%s explodes in a ball of fire!", Doname2(obj));
+        else
+            You_hear("an explosion");
+
+        explode(bhitpos.x, bhitpos.y, -ZT_SPELL(ZT_FIRE), d(2, 6),
+                WEAPON_CLASS, EXPL_FIERY);
+
+        /* D: Exploding bolts will be destroyed */
+        create = 0;
+    }
 
     if (create && !((mtmp = m_at(x, y)) != 0 && mtmp->mtrapped
                     && (t = t_at(x, y)) != 0
@@ -487,7 +503,7 @@ int x, y, dx, dy, range; /* launch point, direction, and range */
 struct obj *obj;         /* missile (or stack providing it) */
 {
     struct monst *mtmp;
-    struct obj *singleobj;
+    struct obj *singleobj, *mwep;
     char sym = obj->oclass;
     int hitu = 0, oldumort, blindinc = 0;
 
@@ -519,6 +535,18 @@ struct obj *obj;         /* missile (or stack providing it) */
     }
 
     singleobj->owornmask = 0; /* threw one of multiple weapons in hand? */
+
+	if (mon)
+        mwep = MON_WEP(mon);
+    else
+        mwep = (struct obj *) 0;	
+	/* D: Special launcher effects */
+    if (mwep && is_ammo(singleobj) && ammo_and_launcher(singleobj, mwep)) {
+        if (mwep->oartifact == ART_PLAGUE && is_poisonable(singleobj))
+            singleobj->opoisoned = 1;
+
+        /* D: Hellfire is handled in drop_throw */
+    }
 
     if ((singleobj->cursed || singleobj->greased) && (dx || dy) && !rn2(7)) {
         if (canseemon(mon) && flags.verbose) {

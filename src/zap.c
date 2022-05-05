@@ -35,19 +35,21 @@ STATIC_DCL int FDECL(spell_hit_bonus, (int));
 STATIC_DCL void FDECL(destroy_one_item, (struct obj *, int, int));
 STATIC_DCL void FDECL(wishcmdassist, (int));
 
+/*
 #define ZT_MAGIC_MISSILE (AD_MAGM - 1)
 #define ZT_FIRE (AD_FIRE - 1)
 #define ZT_COLD (AD_COLD - 1)
 #define ZT_SLEEP (AD_SLEE - 1)
-#define ZT_DEATH (AD_DISN - 1) /* or disintegration */
+#define ZT_DEATH (AD_DISN - 1) // or disintegration
 #define ZT_LIGHTNING (AD_ELEC - 1)
 #define ZT_POISON_GAS (AD_DRST - 1)
 #define ZT_ACID (AD_ACID - 1)
-/* 8 and 9 are currently unassigned */
+// 8 and 9 are currently unassigned
 
 #define ZT_WAND(x) (x)
 #define ZT_SPELL(x) (10 + (x))
 #define ZT_BREATH(x) (20 + (x))
+*/
 
 #define is_hero_spell(type) ((type) >= 10 && (type) < 20)
 
@@ -426,6 +428,7 @@ struct obj *otmp;
             wake = FALSE;
         break;
     case SPE_DRAIN_LIFE:
+    case WAN_DRAINING:
         if (disguised_mimic)
             seemimic(mtmp);
         dmg = monhp_per_lvl(mtmp);
@@ -1990,6 +1993,7 @@ struct obj *obj, *otmp;
 #endif
             break;
         case SPE_DRAIN_LIFE:
+        case WAN_DRAINING:
             (void) drain_item(obj, TRUE);
             break;
         case WAN_TELEPORTATION:
